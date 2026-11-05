@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Kartka z zagiętym rogiem i linią skanowania -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="108" android:viewportHeight="108">
+    <path android:fillColor="#FFFFFFFF"
+        android:pathData="M36,28 L64,28 L74,38 L74,80 L36,80 Z" />
+    <path android:fillColor="#FFB8E3DB"
+        android:pathData="M64,28 L64,38 L74,38 Z" />
+    <path android:fillColor="#FF0F7B6C"
+        android:pathData="M42,46 L68,46 L68,49 L42,49 Z M42,55 L68,55 L68,58 L42,58 Z M42,64 L60,64 L60,67 L42,67 Z" />
+    <path android:fillColor="#FFFFC857"
+        android:pathData="M30,51 L80,51 L80,53 L30,53 Z" />
+</vector>

@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="about_text" formatted="false">Skryba 1.0\n\nSkaner dokumentów działający w pełni offline. Bez kont, reklam i chmury - wszystkie pliki zostają na telefonie. Jedyne połączenie sieciowe to opcjonalne udostępnianie przez link/QR w sieci lokalnej.\n\nBiblioteki: OpenCV, Tesseract OCR, PdfBox-Android, ZXing (licencje Apache 2.0).</string>
+    <string name="access_computer" formatted="false">Dostęp z komputera i tabletu</string>
+    <string name="access_computer_text" formatted="false">Przeglądaj, pobieraj i wysyłaj pliki przez przeglądarkę w tej samej sieci Wi-Fi.</string>
+    <string name="act_compress" formatted="false">Kompresuj</string>
+    <string name="act_convert" formatted="false">Konwertuj</string>
+    <string name="act_merge" formatted="false">Scal</string>
+    <string name="act_protect" formatted="false">Zabezpiecz</string>
+    <string name="act_split" formatted="false">Podziel</string>
+    <string name="act_unlock" formatted="false">Usuń hasło</string>
+    <string name="act_watermark" formatted="false">Dodaj znak wodny</string>
+    <string name="add" formatted="false">Dodaj</string>
+    <string name="add_lang_file" formatted="false">Dodaj język z pliku</string>
+    <string name="add_lang_file_sub" formatted="false">Wbudowane: 41 języków. Inne modele Tesseract (.traineddata) można dodać z pamięci telefonu.</string>
+    <string name="add_signature_hint" formatted="false">Dodaj podpis przyciskiem Nowy na dole.</string>
+    <string name="adding_watermark" formatted="false">Dodawanie znaku wodnego</string>
+    <string name="after" formatted="false">Po</string>
+    <string name="allow" formatted="false">Zezwól</string>
+    <string name="already_compressed">Plik jest już dobrze skompresowany (%1$s)</string>
+    <string name="analyzing_photo" formatted="false">Analiza zdjęcia</string>
+    <string name="and_n_more">i %1$d więcej...</string>
+    <string name="apply" formatted="false">Zastosuj</string>
+    <string name="archive_contents">Zawartość archiwum (%1$d)</string>
+    <string name="as_jpg" formatted="false">Jako obrazy JPG</string>
+    <string name="as_pdf" formatted="false">Jako PDF</string>
+    <string name="as_text" formatted="false">Jako tekst</string>
+    <string name="auto" formatted="false">Auto</string>
+    <string name="back" formatted="false">Wstecz</string>
+    <string name="backup_file">Skryba kopia %1$s.zip</string>
+    <string name="backup_saved" formatted="false">Kopia zapasowa zapisana</string>
+    <string name="batch" formatted="false">Seria</string>
+    <string name="batch_mode" formatted="false">Tryb seryjny</string>
+    <string name="batch_mode_sub" formatted="false">Wiele zdjęć pod rząd bez przycinania po każdym</string>
+    <string name="before" formatted="false">Przed</string>
+    <string name="camera_permission" formatted="false">Potrzebny jest dostęp do aparatu</string>
+    <string name="camera_permission_alt" formatted="false">Możesz też zaimportować zdjęcia z galerii.</string>
+    <string name="cancel" formatted="false">Anuluj</string>
+    <string name="change_file" formatted="false">Zmień plik</string>
+    <string name="choose_from_library" formatted="false">Wybierz z biblioteki</string>
+    <string name="clear" formatted="false">Wyczyść</string>
+    <string name="close" formatted="false">Zamknij</string>
+    <string name="color_blue" formatted="false">Niebieski</string>
+    <string name="color_gray" formatted="false">Szary</string>
+    <string name="color_red" formatted="false">Czerwony</string>
+    <string name="compress_info" formatted="false">Kompresowane są obrazy w pliku. Tekst pozostaje bez zmian.</string>
+    <string name="compressed_from_to">Zmniejszono z %1$s do %2$s</string>
+    <string name="compressed_suffix">%1$s (skompresowany).pdf</string>
+    <string name="compression_level" formatted="false">Stopień kompresji</string>
+    <string name="convert_to_pdf" formatted="false">Konwertuj do PDF</string>
+    <string name="converting_to_pdf" formatted="false">Konwersja do PDF</string>
+    <string name="copied" formatted="false">Skopiowano</string>
+    <string name="copy" formatted="false">Kopiuj</string>
+    <string name="copy_link" formatted="false"> Kopiuj link</string>
+    <string name="copy_suffix">%1$s (kopia)</string>
+    <string name="count_info" formatted="false">Zrób zdjęcie z góry, na jednolitym tle. Stuknij, aby dodać pominięty obiekt; stuknij znacznik, aby go usunąć.</string>
+    <string name="count_sensitivity" formatted="false">Czułość rozdzielania stykających się obiektów</string>
+    <string name="counter_file">Licznik %1$d.jpg</string>
+    <string name="counting" formatted="false">Liczenie</string>
+    <string name="create_backup" formatted="false">Utwórz kopię zapasową</string>
+    <string name="create_backup_sub" formatted="false">Wszystkie dokumenty, pliki i podpisy w jednym pliku ZIP</string>
+    <string name="creating_backup" formatted="false">Tworzenie kopii zapasowej</string>
+    <string name="creating_pdf" formatted="false">Tworzenie PDF</string>
+    <string name="creating_word" formatted="false">Tworzenie dokumentu Word</string>
+    <string name="crop" formatted="false">Przytnij</string>
+    <string name="crop_page" formatted="false">Przytnij stronę</string>
+    <string name="current_password" formatted="false">Obecne hasło pliku</string>
+    <string name="dark_objects" formatted="false">Ciemne obiekty</string>
+    <string name="delete" formatted="false">Usuń</string>
+    <string name="delete_doc_q" formatted="false">Usunąć dokument?</string>
+    <string name="delete_doc_text">\"%1$s\" zostanie trwale usunięty z telefonu.</string>
+    <string name="delete_doc_text2">\"%1$s\" zostanie trwale usunięty.</string>
+    <string name="delete_document" formatted="false">Usuń dokument</string>
+    <string name="delete_file_q" formatted="false">Usunąć plik?</string>
+    <string name="delete_file_text">\"%1$s\" zostanie trwale usunięty.</string>
+    <string name="delete_page_q" formatted="false">Usunąć stronę?</string>
+    <string name="delete_page_text">Strona %1$d zostanie usunięta z dokumentu.</string>
+    <string name="delete_signature_q" formatted="false">Usunąć podpis?</string>
+    <string name="delete_signature_text" formatted="false">Podpis zniknie z listy zapisanych podpisów.</string>
+    <string name="details" formatted="false">Szczegóły</string>
+    <string name="discard" formatted="false">Odrzuć</string>
+    <string name="discard_photos_text">Zrobione zdjęcia (%1$d) zostaną usunięte.</string>
+    <string name="discard_scan_q" formatted="false">Odrzucić skan?</string>
+    <string name="discard_scan_text" formatted="false">Zdjęcia, których nie zapisano, zostaną usunięte.</string>
+    <string name="doc_prefix_scan" formatted="false">Skan</string>
+    <string name="done" formatted="false">Gotowe</string>
+    <string name="done_n">Gotowe (plików: %1$d)</string>
+    <string name="draw_signature" formatted="false">Narysuj podpis</string>
+    <string name="duplicate" formatted="false">Duplikuj</string>
+    <string name="each_page" formatted="false">Każda strona osobno</string>
+    <string name="earlier" formatted="false">Wcześniej</string>
+    <string name="edit_as_scan" formatted="false">Edytuj jako skan</string>
+    <string name="ela_hint" formatted="false">Jasne, wyraźnie odcinające się plamy na mapie ELA mogą oznaczać edycję. Krawędzie i drobne detale zawsze są jaśniejsze. Wynik jest wskazówką, nie dowodem.</string>
+    <string name="ela_map" formatted="false">Mapa ELA</string>
+    <string name="err_camera">Błąd aparatu: %1$s</string>
+    <string name="err_camera_start">Nie można uruchomić aparatu: %1$s</string>
+    <string name="err_create_file">Nie można utworzyć pliku %1$s</string>
+    <string name="err_empty_doc" formatted="false">Dokument jest pusty albo uszkodzony</string>
+    <string name="err_generic">Wystąpił błąd (%1$s)</string>
+    <string name="err_load_signature" formatted="false">Nie można wczytać podpisu</string>
+    <string name="err_not_ooxml" formatted="false">To nie jest plik w formacie Office Open XML (docx/xlsx/pptx)</string>
+    <string name="err_ocr_init">Nie można uruchomić OCR (%1$s)</string>
+    <string name="err_old_format">Stary format .%1$s nie jest obsługiwany. Zapisz plik jako .%1$sx i spróbuj ponownie.</string>
+    <string name="err_oom" formatted="false">Za mało pamięci na tę operację</string>
+    <string name="err_pdf_password" formatted="false">Plik PDF jest chroniony hasłem</string>
+    <string name="err_pdf_password_ui" formatted="false">Plik jest chroniony hasłem albo hasło jest błędne</string>
+    <string name="err_ranges" formatted="false">Podaj zakresy stron, np. 1-3, 5, 7-9</string>
+    <string name="err_read_image" formatted="false">Nie można odczytać obrazu</string>
+    <string name="err_save_photo" formatted="false">Nie udało się zapisać zdjęcia</string>
+    <string name="err_unknown_type">Nieobsługiwany typ pliku: .%1$s</string>
+    <string name="exporting_images" formatted="false">Eksport obrazów</string>
+    <string name="file" formatted="false">Plik</string>
+    <string name="file_default" formatted="false">plik</string>
+    <string name="file_name" formatted="false">Nazwa pliku</string>
+    <string name="files_n">Pliki (%1$d)</string>
+    <string name="filter_auto" formatted="false">Auto</string>
+    <string name="filter_bw" formatted="false">Czarno-biały</string>
+    <string name="filter_for_all" formatted="false">Filtr dla\nwszystkich</string>
+    <string name="filter_gray" formatted="false">Szary</string>
+    <string name="filter_lighten" formatted="false">Rozjaśnij</string>
+    <string name="filter_magic" formatted="false">Bez cieni</string>
+    <string name="filter_no_ink" formatted="false">Bez odpowiedzi</string>
+    <string name="filter_original" formatted="false">Oryginał</string>
+    <string name="filter_whiteboard" formatted="false">Tablica</string>
+    <string name="found_editors">Znalezione programy: %1$s</string>
+    <string name="from_gallery" formatted="false">Z galerii</string>
+    <string name="from_phone" formatted="false"> Z telefonu</string>
+    <string name="from_skryba" formatted="false"> Z Skryby</string>
+    <string name="gallery" formatted="false">Galeria</string>
+    <string name="group_ai" formatted="false">Narzędzia AI</string>
+    <string name="group_convert" formatted="false">Konwertuj</string>
+    <string name="group_edit" formatted="false">Edytuj PDF</string>
+    <string name="group_scan" formatted="false">Skanuj</string>
+    <string name="hint_delete" formatted="false">Zaznacz strony do usunięcia i naciśnij Usuń.</string>
+    <string name="hint_organize" formatted="false">Zaznacz stronę, aby ją przesunąć, obrócić lub usunąć.</string>
+    <string name="hint_rotate" formatted="false">Zaznacz strony i obróć je przyciskami poniżej.</string>
+    <string name="how1" formatted="false">Pliki są wysyłane prosto z telefonu, bez chmury i bez internetu.</string>
+    <string name="how2" formatted="false">Oba urządzenia muszą być w tej samej sieci Wi-Fi (albo na hotspocie tego telefonu).</string>
+    <string name="how3" formatted="false">Link działa tylko dopóki ten ekran jest otwarty.</string>
+    <string name="how4" formatted="false">Na stronie można też wysłać pliki z komputera na telefon.</string>
+    <string name="how_it_works" formatted="false">Jak to działa</string>
+    <string name="id_back" formatted="false">Teraz zrób zdjęcie TYŁU dokumentu</string>
+    <string name="id_compose_info" formatted="false">Przód i tył zostaną złożone na jednej stronie A4 w rzeczywistym rozmiarze.</string>
+    <string name="id_front" formatted="false">Zrób zdjęcie PRZODU dokumentu</string>
+    <string name="image" formatted="false">Obraz</string>
+    <string name="image_quality">Jakość obrazów: %1$d%%</string>
+    <string name="image_quality_setting">Jakość obrazów: %1$d%%</string>
+    <string name="image_quality_title" formatted="false">Jakość obrazów</string>
+    <string name="import_files" formatted="false">Importuj pliki z telefonu</string>
+    <string name="imported_n">Zaimportowano plików: %1$d</string>
+    <string name="importing" formatted="false">Importowanie</string>
+    <string name="importing_pages" formatted="false">Importowanie stron</string>
+    <string name="input_images" formatted="false">zdjęcia</string>
+    <string name="insert" formatted="false"> Wstaw</string>
+    <string name="insert_signature" formatted="false"> Wstaw podpis</string>
+    <string name="inserting_signature" formatted="false">Wstawianie podpisu</string>
+    <string name="jpg_zip_suffix">%1$s (JPG).zip</string>
+    <string name="lang_added">Dodano język: %1$s</string>
+    <string name="lang_code" formatted="false">Kod języka</string>
+    <string name="lang_code_hint" formatted="false">np. lat, gle, eus</string>
+    <string name="lang_system" formatted="false">Język telefonu</string>
+    <string name="languages" formatted="false">Języki</string>
+    <string name="later" formatted="false">Później</string>
+    <string name="level_light" formatted="false">Lekka</string>
+    <string name="level_medium" formatted="false">Średnia</string>
+    <string name="level_strong" formatted="false">Silna</string>
+    <string name="library_title" formatted="false">Biblioteka Skryba</string>
+    <string name="light_objects" formatted="false">Jasne obiekty</string>
+    <string name="link" formatted="false">Link</string>
+    <string name="link_copied" formatted="false">Skopiowano link</string>
+    <string name="link_qr" formatted="false">Link / QR</string>
+    <string name="link_qr_code" formatted="false">Link / kod QR</string>
+    <string name="live_detection" formatted="false">Wykrywanie krawędzi na żywo</string>
+    <string name="live_detection_sub" formatted="false">Obrys kartki widoczny w aparacie</string>
+    <string name="loading" formatted="false">Wczytywanie</string>
+    <string name="loading_model" formatted="false">Wczytywanie modelu</string>
+    <string name="loading_photos" formatted="false">Wczytywanie zdjęć</string>
+    <string name="mega_info" formatted="false">Duży dokument (plakat, mapa, A3) sfotografuj w kilku częściach po kolei, z zakładką ok. 30% między zdjęciami. Skryba złoży je w jeden skan.</string>
+    <string name="mode_book" formatted="false">Książka</string>
+    <string name="mode_book_hint" formatted="false">Rozłóż książkę, obie strony w kadrze</string>
+    <string name="mode_document" formatted="false">Dokument</string>
+    <string name="mode_document_hint" formatted="false">Umieść dokument w kadrze</string>
+    <string name="mode_id" formatted="false">Dowód</string>
+    <string name="mode_id_hint" formatted="false">Zrób zdjęcie przodu, potem tyłu</string>
+    <string name="mode_slides" formatted="false">Slajdy</string>
+    <string name="mode_slides_hint" formatted="false">Uchwyć ekran lub slajd z prezentacji</string>
+    <string name="mode_test" formatted="false">Sprawdzian</string>
+    <string name="mode_test_hint" formatted="false">Usuwa odpowiedzi pisane kolorowym długopisem</string>
+    <string name="mode_text" formatted="false">Tekst</string>
+    <string name="mode_text_hint" formatted="false">Zdjęcie zostanie zamienione na tekst (OCR)</string>
+    <string name="mode_whiteboard" formatted="false">Tablica</string>
+    <string name="mode_whiteboard_hint" formatted="false">Uchwyć całą tablicę</string>
+    <string name="modified_suffix">%1$s (zmieniony).pdf</string>
+    <string name="more" formatted="false">Więcej</string>
+    <string name="move_down" formatted="false">W dół</string>
+    <string name="move_up" formatted="false">W górę</string>
+    <string name="name" formatted="false">Nazwa</string>
+    <string name="new_signature" formatted="false"> Nowy</string>
+    <string name="next" formatted="false">Dalej</string>
+    <string name="next_crop_save" formatted="false">Dalej: przytnij i zapisz jako dokument</string>
+    <string name="next_page" formatted="false">Następna</string>
+    <string name="no_app_to_open" formatted="false">Brak aplikacji do otwarcia tego pliku</string>
+    <string name="no_documents" formatted="false">Brak dokumentów</string>
+    <string name="no_documents_text" formatted="false">Naciśnij Skanuj, aby zeskanować pierwszy dokument. Wszystko zostaje na telefonie.</string>
+    <string name="no_files" formatted="false">Brak plików</string>
+    <string name="no_files_text" formatted="false">Tu pojawią się pliki PDF, Word, Excel i inne utworzone w aplikacji lub zaimportowane.</string>
+    <string name="no_local_network" formatted="false">Brak sieci lokalnej</string>
+    <string name="no_local_network_text" formatted="false">Połącz telefon z Wi-Fi albo włącz hotspot i połącz z nim drugie urządzenie. Internet nie jest potrzebny.</string>
+    <string name="no_match">Nic nie pasuje do \"%1$s\".</string>
+    <string name="no_matching_files">Brak pasujących plików (%1$s).</string>
+    <string name="no_preview" formatted="false">Brak podglądu dla tego typu pliku.</string>
+    <string name="no_preview_sub" formatted="false">Użyj menu, aby otworzyć go w innej aplikacji.</string>
+    <string name="no_ps_traces" formatted="false">Nie znaleziono śladów Photoshopa ani innych edytorów w metadanych.</string>
+    <string name="no_results" formatted="false">Brak wyników</string>
+    <string name="not_tess_model" formatted="false">To nie wygląda na model Tesseract (.traineddata)</string>
+    <string name="objects_counted" formatted="false">policzonych obiektów</string>
+    <string name="ocr_no_text" formatted="false">Nie znaleziono tekstu. Spróbuj innego języka (ikona globusa) albo lepiej oświetlonego zdjęcia.</string>
+    <string name="ocr_running" formatted="false">Rozpoznawanie tekstu offline...</string>
+    <string name="ocr_scans_info" formatted="false">Strony bez warstwy tekstu (skany) zostaną rozpoznane przez OCR w wybranych językach.</string>
+    <string name="office_formats_info" formatted="false">Obsługiwane są nowe formaty Office (.docx, .xlsx, .pptx) oraz .txt i .csv.</string>
+    <string name="ok" formatted="false">OK</string>
+    <string name="opacity">Przezroczystość: %1$d%%</string>
+    <string name="open" formatted="false">Otwórz</string>
+    <string name="open_in_other" formatted="false">Otwórz w innej aplikacji</string>
+    <string name="open_with" formatted="false">Otwórz w</string>
+    <string name="original" formatted="false">Oryginał</string>
+    <string name="output_name" formatted="false">Nazwa pliku wynikowego</string>
+    <string name="page_n">Strona %1$d</string>
+    <string name="page_size" formatted="false">Rozmiar strony</string>
+    <string name="page_slash">Strona %1$d / %2$d</string>
+    <string name="page_text_n">Tekst strony %1$d</string>
+    <string name="page_x_of_y">Strona %1$d z %2$d</string>
+    <string name="pages_short">%1$d str.</string>
+    <string name="pagesize_fit" formatted="false">Dopasuj do obrazu</string>
+    <string name="password" formatted="false">Hasło</string>
+    <string name="password_for">Hasło do \"%1$s\"</string>
+    <string name="password_min" formatted="false">Hasło (min. 4 znaki)</string>
+    <string name="password_protected" formatted="false">Plik chroniony hasłem</string>
+    <string name="password_repeat" formatted="false">Powtórz hasło</string>
+    <string name="password_warning" formatted="false">Bez hasła nie da się otworzyć pliku. Zapamiętaj je - nie da się go odzyskać.</string>
+    <string name="passwords_differ" formatted="false">Hasła się różnią</string>
+    <string name="pdf" formatted="false">PDF</string>
+    <string name="pdf_text_layer" formatted="false">PDF z warstwą tekstu</string>
+    <string name="pdf_text_layer_sub" formatted="false">Domyślnie dodawaj niewidoczny tekst OCR do PDF (wyszukiwanie i kopiowanie)</string>
+    <string name="photo_default" formatted="false">zdjęcie</string>
+    <string name="photos_order">Zdjęcia (%1$d) - w kolejności sklejania</string>
+    <string name="photoshop_info" formatted="false">Sprawdza, czy zdjęcie było obrabiane w Photoshopie lub innym programie graficznym (metadane, historia zapisów, analiza kompresji).</string>
+    <string name="preparing" formatted="false">Przygotowanie</string>
+    <string name="preparing_pdf" formatted="false">Przygotowanie PDF</string>
+    <string name="preview_failed" formatted="false">Nie udało się wyświetlić pliku</string>
+    <string name="previous" formatted="false">Poprzednia</string>
+    <string name="processing" formatted="false">Przetwarzanie</string>
+    <string name="processing_page" formatted="false">Przetwarzanie strony</string>
+    <string name="protect_password" formatted="false">Chroń hasłem</string>
+    <string name="protected_suffix">%1$s (chroniony).pdf</string>
+    <string name="q_high" formatted="false">Wysoka</string>
+    <string name="q_low" formatted="false">Mała</string>
+    <string name="q_medium" formatted="false">Średnia</string>
+    <string name="qr_code" formatted="false">Kod QR</string>
+    <string name="ranges" formatted="false">Zakresy</string>
+    <string name="ranges_hint" formatted="false">Zakresy, np. 1-3, 5, 7-9</string>
+    <string name="received_file">Odebrano plik: %1$s</string>
+    <string name="recognize" formatted="false">Rozpoznaj</string>
+    <string name="recognize_again" formatted="false">Rozpoznaj ponownie</string>
+    <string name="recognized_text" formatted="false">Rozpoznany tekst</string>
+    <string name="recognizing_text" formatted="false">Rozpoznawanie tekstu</string>
+    <string name="remove" formatted="false">Usuń</string>
+    <string name="remove_scratches" formatted="false">Usuń rysy i kurz</string>
+    <string name="remove_signatures" formatted="false"> Usuń podpisy</string>
+    <string name="removing_signatures" formatted="false">Usuwanie podpisów</string>
+    <string name="rename" formatted="false">Zmień nazwę</string>
+    <string name="reorder_pages" formatted="false">Zmień kolejność stron</string>
+    <string name="restore_backup" formatted="false">Przywróć z kopii</string>
+    <string name="restore_backup_sub" formatted="false">Wczytaj plik ZIP utworzony w Skrybie</string>
+    <string name="restore_info" formatted="false">Usuwa rysy i kurz, odszumia, zdejmuje zażółcenie i poprawia kontrast starych zdjęć. Wszystko działa na telefonie.</string>
+    <string name="restored_n">Przywrócono dokumentów: %1$d</string>
+    <string name="restored_suffix">%1$s (odnowione).jpg</string>
+    <string name="restoring" formatted="false">Renowacja zdjęcia</string>
+    <string name="restoring_backup" formatted="false">Przywracanie kopii</string>
+    <string name="revive_colors" formatted="false">Ożyw wyblakłe kolory</string>
+    <string name="rotate" formatted="false">Obróć</string>
+    <string name="rotate_left" formatted="false">W lewo</string>
+    <string name="rotate_right" formatted="false">W prawo</string>
+    <string name="save" formatted="false">Zapisz</string>
+    <string name="save_as_pdf" formatted="false">Zapisz jako PDF</string>
+    <string name="save_as_word" formatted="false">Zapisz jako Word</string>
+    <string name="save_images_zip" formatted="false">Zapisz obrazy (ZIP)</string>
+    <string name="save_marked" formatted="false"> Zapisz z oznaczeniami</string>
+    <string name="save_result" formatted="false"> Zapisz wynik</string>
+    <string name="save_spaced" formatted="false"> Zapisz</string>
+    <string name="save_txt" formatted="false">Zapisz TXT</string>
+    <string name="save_word" formatted="false">Zapisz Word</string>
+    <string name="saved_in_files" formatted="false">Zapisano w zakładce Pliki.</string>
+    <string name="saved_n">Zapisano plików: %1$d</string>
+    <string name="saved_on_device" formatted="false">Zapisano na urządzeniu</string>
+    <string name="saving" formatted="false">Zapisywanie</string>
+    <string name="saving_document" formatted="false">Zapisywanie dokumentu</string>
+    <string name="scan" formatted="false">Skanuj</string>
+    <string name="scan_pages">Skan, %1$d str.</string>
+    <string name="scan_this_photo" formatted="false">Skanuj to zdjęcie</string>
+    <string name="scan_with_other" formatted="false">Zeskanuj kod aparatem drugiego urządzenia</string>
+    <string name="score">Wskaźnik: %1$d/100</string>
+    <string name="search" formatted="false">Szukaj</string>
+    <string name="search_hint" formatted="false">Szukaj w nazwach i treści</string>
+    <string name="searchable_text" formatted="false">Tekst do wyszukiwania (OCR)</string>
+    <string name="searchable_text_sub" formatted="false">Wolniej, ale tekst w PDF da się zaznaczać i szukać</string>
+    <string name="sec_about" formatted="false">O aplikacji</string>
+    <string name="sec_app_language" formatted="false">Język aplikacji</string>
+    <string name="sec_backup" formatted="false">Kopia zapasowa (bez chmury)</string>
+    <string name="sec_ocr" formatted="false">Rozpoznawanie tekstu (OCR)</string>
+    <string name="sec_scanning" formatted="false">Skanowanie</string>
+    <string name="select_all" formatted="false">Zaznacz wszystko</string>
+    <string name="selected_n">Zaznaczono: %1$d</string>
+    <string name="send_link" formatted="false"> Wyślij link</string>
+    <string name="settings" formatted="false">Ustawienia</string>
+    <string name="share" formatted="false">Udostępnij</string>
+    <string name="share_chooser" formatted="false">Udostępnij</string>
+    <string name="share_pdf" formatted="false">Udostępnij PDF</string>
+    <string name="share_save" formatted="false">Udostępnij / zapisz</string>
+    <string name="share_start_failed" formatted="false">Nie udało się uruchomić udostępniania.</string>
+    <string name="share_text_chooser" formatted="false">Udostępnij tekst</string>
+    <string name="share_via_link" formatted="false">Udostępnij przez link</string>
+    <string name="shared_files" formatted="false">Udostępnione pliki</string>
+    <string name="sheet_page">Strona %1$d</string>
+    <string name="show_password" formatted="false">Pokaż hasło</string>
+    <string name="sign" formatted="false">Podpisz</string>
+    <string name="sign_here" formatted="false">Podpisz się palcem tutaj</string>
+    <string name="sign_hint" formatted="false">Przesuń podpis palcem, powiększ dwoma palcami</string>
+    <string name="sign_page" formatted="false">Podpisz stronę</string>
+    <string name="sign_pdf" formatted="false">Podpisz PDF</string>
+    <string name="signed_suffix">%1$s (podpisany).pdf</string>
+    <string name="single" formatted="false">Pojedynczo</string>
+    <string name="split_mode" formatted="false">Sposób podziału</string>
+    <string name="split_spread" formatted="false">Podziel rozkładówkę na 2 strony</string>
+    <string name="split_suffix">%1$s (str. %2$s).pdf</string>
+    <string name="src_camera" formatted="false"> Aparat</string>
+    <string name="src_file" formatted="false"> Plik</string>
+    <string name="src_gallery" formatted="false"> Galeria</string>
+    <string name="stitch_button" formatted="false"> Sklej w jeden skan</string>
+    <string name="stitch_failed" formatted="false">Dopasowanie zdjęć się nie powiodło.</string>
+    <string name="stitch_need_two" formatted="false">Potrzebne są co najmniej 2 zdjęcia</string>
+    <string name="stitch_no_match">Nie udało się dopasować zdjęcia %1$d.</string>
+    <string name="stitch_too_little">Zdjęcia %1$d i %2$d mają za mało wspólnych fragmentów. Zrób zdjęcia z większą zakładką.</string>
+    <string name="stitching" formatted="false">Sklejanie zdjęć</string>
+    <string name="str_gentle" formatted="false">Delikatna</string>
+    <string name="str_medium" formatted="false">Średnia</string>
+    <string name="str_strong" formatted="false">Mocna</string>
+    <string name="strength">Siła: %1$s</string>
+    <string name="tab_docs" formatted="false">Dokumenty</string>
+    <string name="tab_files" formatted="false">Pliki</string>
+    <string name="tab_tools" formatted="false">Narzędzia</string>
+    <string name="tamper_camera">Aparat: %1$s.</string>
+    <string name="tamper_dates">Data modyfikacji (%1$s) różni się od daty wykonania zdjęcia (%2$s).</string>
+    <string name="tamper_editors">Metadane wskazują na edycję w programie: %1$s.</string>
+    <string name="tamper_ela_outliers">Analiza ELA: %1$s%% obszaru ma wyraźnie inny poziom kompresji (możliwe wklejenie lub retusz).</string>
+    <string name="tamper_ela_uniform" formatted="false">Analiza ELA: poziom kompresji jest jednolity na całym zdjęciu.</string>
+    <string name="tamper_info" formatted="false">Analiza ELA pokazuje obszary o innym poziomie kompresji JPEG - typowe dla wklejonych lub retuszowanych fragmentów. Do tego sprawdzane są metadane pliku. Wybierz oryginalny plik (najlepiej przez \"Plik\").</string>
+    <string name="tamper_no_camera" formatted="false">Brak informacji o aparacie (metadane mogły zostać usunięte).</string>
+    <string name="tamper_not_jpeg" formatted="false">Plik nie jest JPEG - analiza ELA jest mniej wiarygodna.</string>
+    <string name="tamper_software">Oprogramowanie zapisane w pliku: %1$s.</string>
+    <string name="tamper_verdict_high" formatted="false">Wysokie prawdopodobieństwo edycji</string>
+    <string name="tamper_verdict_low" formatted="false">Brak wyraźnych śladów edycji</string>
+    <string name="tamper_verdict_mid" formatted="false">Możliwa edycja - sprawdź zaznaczone obszary</string>
+    <string name="tamper_xmp_history" formatted="false">Plik zawiera historię zapisów XMP (typowe dla Photoshopa).</string>
+    <string name="text" formatted="false">Tekst</string>
+    <string name="text_languages" formatted="false">Języki tekstu</string>
+    <string name="text_languages_hint" formatted="false">Wybierz 1-3 języki występujące w dokumencie. Więcej języków = wolniej.</string>
+    <string name="to_computer" formatted="false">Na komputer</string>
+    <string name="to_phone" formatted="false">Na telefon</string>
+    <string name="tool_compress" formatted="false">Kompresuj PDF</string>
+    <string name="tool_compress_sub" formatted="false">Mniejszy rozmiar pliku</string>
+    <string name="tool_count" formatted="false">Licznik obiektów</string>
+    <string name="tool_count_sub" formatted="false">Policz rury, monety, tabletki...</string>
+    <string name="tool_delete_pages" formatted="false">Usuń strony</string>
+    <string name="tool_delete_pages_sub" formatted="false">Wyrzuć niepotrzebne strony</string>
+    <string name="tool_e_signature" formatted="false">Podpis elektroniczny</string>
+    <string name="tool_e_signature_sub" formatted="false">Narysuj i wstaw podpis</string>
+    <string name="tool_excel_to_pdf" formatted="false">Excel na PDF</string>
+    <string name="tool_excel_to_pdf_sub" formatted="false">Pliki .xlsx i .csv</string>
+    <string name="tool_image_to_text" formatted="false">Zdjęcie na tekst</string>
+    <string name="tool_image_to_text_sub" formatted="false">OCR w 41 językach, offline</string>
+    <string name="tool_jpg_to_pdf" formatted="false">JPG na PDF</string>
+    <string name="tool_jpg_to_pdf_sub" formatted="false">Zdjęcia w jeden plik PDF</string>
+    <string name="tool_mega_scan" formatted="false">Mega skan</string>
+    <string name="tool_mega_scan_sub" formatted="false">Sklej kilka zdjęć dużego dokumentu</string>
+    <string name="tool_merge" formatted="false">Scal PDF</string>
+    <string name="tool_merge_sub" formatted="false">Połącz kilka plików w jeden</string>
+    <string name="tool_organize" formatted="false">Porządkuj strony</string>
+    <string name="tool_organize_sub" formatted="false">Zmień kolejność, obróć, usuń</string>
+    <string name="tool_pdf_to_excel" formatted="false">PDF na Excel</string>
+    <string name="tool_pdf_to_excel_sub" formatted="false">Tabele do arkusza .xlsx</string>
+    <string name="tool_pdf_to_jpg" formatted="false">PDF na JPG</string>
+    <string name="tool_pdf_to_jpg_sub" formatted="false">Strony jako obrazy</string>
+    <string name="tool_pdf_to_ppt" formatted="false">PDF na PowerPoint</string>
+    <string name="tool_pdf_to_ppt_sub" formatted="false">Każda strona jako slajd</string>
+    <string name="tool_pdf_to_word" formatted="false">PDF na Word</string>
+    <string name="tool_pdf_to_word_sub" formatted="false">Edytowalny dokument .docx</string>
+    <string name="tool_photoshop" formatted="false">Wykrywanie Photoshopa</string>
+    <string name="tool_photoshop_sub" formatted="false">Ślady programów graficznych</string>
+    <string name="tool_ppt_to_pdf" formatted="false">PowerPoint na PDF</string>
+    <string name="tool_ppt_to_pdf_sub" formatted="false">Pliki .pptx</string>
+    <string name="tool_protect" formatted="false">Chroń hasłem</string>
+    <string name="tool_protect_sub" formatted="false">Szyfrowanie AES-256</string>
+    <string name="tool_restore" formatted="false">Renowacja zdjęć</string>
+    <string name="tool_restore_sub" formatted="false">Usuwa rysy, szum i zażółcenie</string>
+    <string name="tool_rotate" formatted="false">Obróć strony</string>
+    <string name="tool_rotate_sub" formatted="false">Obrót wybranych stron</string>
+    <string name="tool_scan_book" formatted="false">Skanuj książkę</string>
+    <string name="tool_scan_book_sub" formatted="false">Rozkładówka dzielona na dwie strony</string>
+    <string name="tool_scan_doc" formatted="false">Skanuj dokumenty</string>
+    <string name="tool_scan_doc_sub" formatted="false">Wiele stron naraz, automatyczne przycinanie</string>
+    <string name="tool_scan_id" formatted="false">Skanuj dowód</string>
+    <string name="tool_scan_id_sub" formatted="false">Przód i tył na jednej stronie A4</string>
+    <string name="tool_scan_slides" formatted="false">Slajdy</string>
+    <string name="tool_scan_slides_sub" formatted="false">Zdjęcia ekranu i prezentacji</string>
+    <string name="tool_scan_test" formatted="false">Skanuj sprawdzian</string>
+    <string name="tool_scan_test_sub" formatted="false">Usuwa odpowiedzi pisane długopisem</string>
+    <string name="tool_scan_whiteboard" formatted="false">Tablica</string>
+    <string name="tool_scan_whiteboard_sub" formatted="false">Czytelny zapis z tablicy</string>
+    <string name="tool_sign" formatted="false">Podpisz PDF</string>
+    <string name="tool_sign_sub" formatted="false">Własnoręczny podpis na stronie</string>
+    <string name="tool_split" formatted="false">Podziel PDF</string>
+    <string name="tool_split_sub" formatted="false">Wybrane zakresy stron</string>
+    <string name="tool_tamper" formatted="false">Wykrywanie manipulacji</string>
+    <string name="tool_tamper_sub" formatted="false">Analiza ELA i metadanych</string>
+    <string name="tool_unlock" formatted="false">Usuń hasło</string>
+    <string name="tool_unlock_sub" formatted="false">Odblokuj własny plik PDF</string>
+    <string name="tool_watermark" formatted="false">Znak wodny</string>
+    <string name="tool_watermark_sub" formatted="false">Napis na każdej stronie</string>
+    <string name="tool_word_to_pdf" formatted="false">Word na PDF</string>
+    <string name="tool_word_to_pdf_sub" formatted="false">Pliki .docx i .txt</string>
+    <string name="torch" formatted="false">Latarka</string>
+    <string name="total_n">Razem: %1$d</string>
+    <string name="unlocked_suffix">%1$s (bez hasła).pdf</string>
+    <string name="watermark" formatted="false">Znak wodny</string>
+    <string name="watermark_default" formatted="false">KOPIA</string>
+    <string name="watermark_pdf" formatted="false">Znak wodny (PDF)</string>
+    <string name="watermark_suffix">%1$s (znak wodny).pdf</string>
+    <string name="web_documents" formatted="false">Dokumenty</string>
+    <string name="web_download" formatted="false">Pobierz</string>
+    <string name="web_expired" formatted="false">Ten link wygasł. Poproś o nowy kod QR.</string>
+    <string name="web_files" formatted="false">Pliki</string>
+    <string name="web_footer" formatted="false">Pliki są przesyłane bezpośrednio z telefonu przez sieć lokalną (aplikacja Skryba).</string>
+    <string name="web_lang" formatted="false">pl</string>
+    <string name="web_no_file" formatted="false">Brak pliku</string>
+    <string name="web_no_files" formatted="false">Brak plików.</string>
+    <string name="web_not_found" formatted="false">Nie znaleziono.</string>
+    <string name="web_pages_short">%1$d str.</string>
+    <string name="web_upload_error" formatted="false">Błąd wysyłania</string>
+    <string name="web_upload_title" formatted="false">Wyślij na telefon</string>
+    <string name="web_uploaded" formatted="false">Wysłano: </string>
+    <string name="web_uploading" formatted="false">Wysyłanie: </string>
+    <string name="which_page_sign" formatted="false">Którą stronę podpisać?</string>
+    <string name="whole" formatted="false">Całość</string>
+    <string name="wifi_settings" formatted="false">Ustawienia Wi-Fi</string>
+    <string name="wm_confidential" formatted="false">POUFNE</string>
+    <string name="wm_text" formatted="false">Tekst znaku wodnego</string>
+    <string name="wrong_password" formatted="false">Błędne hasło</string>
+</resources>
