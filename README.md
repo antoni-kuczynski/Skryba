@@ -1,5 +1,8 @@
 # Skryba
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE.md)
+[![Build and unit tests](https://github.com/antoni-kuczynski/Skryba/actions/workflows/build.yml/badge.svg)](https://github.com/antoni-kuczynski/Skryba/actions/workflows/build.yml)
+
 Skryba is a document scanner for Android. It works fully offline: no accounts, no ads,
 no cloud. The only network feature is optional sharing over your local Wi-Fi via a link or
 QR code, which you start yourself and which stops when you close it.
