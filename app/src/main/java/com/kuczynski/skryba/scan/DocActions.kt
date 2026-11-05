@@ -49,6 +49,44 @@ object DocActions {
         }
     }
 
+    /** Zapisuje strony jako JPG w galerii, w albumie "Skryba" (Pictures/Skryba). Zwraca liczbę zapisanych zdjęć. */
+    fun saveToGallery(context: Context, doc: ScanDocument, indices: List<Int>? = null): Int {
+        val resolver = context.contentResolver
+        val base = Library.sanitize(doc.name)
+        val idxs = indices ?: doc.pages.indices.toList()
+        var saved = 0
+        idxs.forEach { i ->
+            val src = Library.pageFile(doc.id, doc.pages[i].processed)
+            val name = if (doc.pages.size == 1) "$base.jpg" else "${base}_${i + 1}.jpg"
+            val values = android.content.ContentValues().apply {
+                put(android.provider.MediaStore.Images.Media.DISPLAY_NAME, name)
+                put(android.provider.MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
+                if (android.os.Build.VERSION.SDK_INT >= 29) {
+                    put(android.provider.MediaStore.Images.Media.RELATIVE_PATH, android.os.Environment.DIRECTORY_PICTURES + "/Skryba")
+                    put(android.provider.MediaStore.Images.Media.IS_PENDING, 1)
+                } else {
+                    val dir = File(android.os.Environment.getExternalStoragePublicDirectory(android.os.Environment.DIRECTORY_PICTURES), "Skryba")
+                    dir.mkdirs()
+                    put(android.provider.MediaStore.Images.Media.DATA, File(dir, name).path)
+                }
+            }
+            val uri = resolver.insert(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values) ?: return@forEach
+            try {
+                resolver.openOutputStream(uri)!!.use { out -> src.inputStream().use { it.copyTo(out) } }
+                if (android.os.Build.VERSION.SDK_INT >= 29) {
+                    resolver.update(uri, android.content.ContentValues().apply {
+                        put(android.provider.MediaStore.Images.Media.IS_PENDING, 0)
+                    }, null, null)
+                }
+                saved++
+            } catch (e: Exception) {
+                resolver.delete(uri, null, null)
+                throw e
+            }
+        }
+        return saved
+    }
+
     fun exportJpgZip(doc: ScanDocument): File {
         val tmp = Library.tempFile("jpg.zip")
         ZipOutputStream(tmp.outputStream().buffered()).use { zip ->

@@ -22,6 +22,7 @@ import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Draw
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.filled.TextFields
+import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.MaterialTheme
@@ -86,7 +87,11 @@ fun PageScreen(nav: NavController, docId: String, startIndex: Int) {
     }
 
     Scaffold(
-        topBar = { BackTopBar(str(R.string.page_x_of_y, index + 1, doc.pages.size), { nav.popBackStack() }, subtitle = doc.name) },
+        topBar = {
+            BackTopBar(str(R.string.page_x_of_y, index + 1, doc.pages.size), { nav.popBackStack() }, subtitle = doc.name) {
+                Button(onClick = { nav.popBackStack() }, modifier = Modifier.padding(end = 8.dp)) { Text(str(R.string.ok)) }
+            }
+        },
         bottomBar = {
             Column(Modifier.fillMaxWidth().background(MaterialTheme.colorScheme.surface).navigationBarsPadding()) {
                 LazyRow(

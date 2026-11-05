@@ -456,4 +456,6 @@
     <string name="wm_confidential" formatted="false">POUFNE</string>
     <string name="wm_text" formatted="false">Tekst znaku wodnego</string>
     <string name="wrong_password" formatted="false">Błędne hasło</string>
+    <string name="save_to_gallery" formatted="false">Zapisz w galerii</string>
+    <string name="saved_to_gallery">Zapisano w albumie Skryba: %1$d</string>
 </resources>

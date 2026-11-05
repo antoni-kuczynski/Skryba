@@ -456,4 +456,6 @@
     <string name="wm_confidential" formatted="false">CONFIDENTIAL</string>
     <string name="wm_text" formatted="false">Watermark text</string>
     <string name="wrong_password" formatted="false">Wrong password</string>
+    <string name="save_to_gallery" formatted="false">Save to gallery</string>
+    <string name="saved_to_gallery">Saved to the Skryba album: %1$d</string>
 </resources>

@@ -137,6 +137,15 @@ fun DocumentScreen(nav: NavController, docId: String) {
         }
     }
 
+    fun saveToGallery() {
+        runner.run(str(R.string.saving), onDone = { n: Int ->
+            com.kuczynski.skryba.ui.common.toast(context, str(R.string.saved_to_gallery, n))
+        }) { DocActions.saveToGallery(context, doc) }
+    }
+    val storagePermission = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
+        if (granted) saveToGallery()
+    }
+
     fun movePage(from: Int, to: Int) {
         if (to !in doc.pages.indices) return
         val list = doc.pages.toMutableList()
@@ -207,6 +216,12 @@ fun DocumentScreen(nav: NavController, docId: String) {
                             DropdownMenuItem(text = { Text(str(R.string.save_images_zip)) }, leadingIcon = { Icon(Icons.Default.Image, null) }, onClick = {
                                 menu = false
                                 runner.run(str(R.string.exporting_images), onDone = { f: File -> result = listOf(f) }) { DocActions.exportJpgZip(doc) }
+                            })
+                            DropdownMenuItem(text = { Text(str(R.string.save_to_gallery)) }, leadingIcon = { Icon(Icons.Default.PhotoLibrary, null) }, onClick = {
+                                menu = false
+                                if (android.os.Build.VERSION.SDK_INT < 29 &&
+                                    androidx.core.content.ContextCompat.checkSelfPermission(context, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != android.content.pm.PackageManager.PERMISSION_GRANTED
+                                ) storagePermission.launch(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) else saveToGallery()
                             })
                             DropdownMenuItem(text = { Text(str(R.string.watermark_pdf)) }, leadingIcon = { Icon(Icons.Default.WaterDrop, null) }, onClick = { menu = false; watermarkDialog = true })
                             DropdownMenuItem(text = { Text(str(R.string.duplicate)) }, leadingIcon = { Icon(Icons.Default.ContentCopy, null) }, onClick = {

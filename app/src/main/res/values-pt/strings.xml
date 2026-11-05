@@ -456,4 +456,6 @@
     <string name="wm_confidential" formatted="false">CONFIDENCIAL</string>
     <string name="wm_text" formatted="false">Texto da marca d\'água</string>
     <string name="wrong_password" formatted="false">Senha incorreta</string>
+    <string name="save_to_gallery" formatted="false">Salvar na galeria</string>
+    <string name="saved_to_gallery">Salvo no álbum Skryba: %1$d</string>
 </resources>

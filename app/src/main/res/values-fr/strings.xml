@@ -456,4 +456,6 @@
     <string name="wm_confidential" formatted="false">CONFIDENTIEL</string>
     <string name="wm_text" formatted="false">Texte du filigrane</string>
     <string name="wrong_password" formatted="false">Mot de passe incorrect</string>
+    <string name="save_to_gallery" formatted="false">Enregistrer dans la galerie</string>
+    <string name="saved_to_gallery">Enregistré dans l\'album Skryba : %1$d</string>
 </resources>
