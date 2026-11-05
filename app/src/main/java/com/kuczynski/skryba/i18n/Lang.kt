@@ -9,7 +9,7 @@ import androidx.annotation.StringRes
 import java.util.Locale
 
 /**
- * Język aplikacji: "" = jak w telefonie, "pl" albo "en".
+ * Język aplikacji: "" = jak w telefonie, albo kod języka (pl, en, de, fr, pt).
  * Na Androidzie 13+ korzystamy z systemowego języka per aplikacja (LocaleManager),
  * na starszych podmieniamy konfigurację kontekstu.
  */

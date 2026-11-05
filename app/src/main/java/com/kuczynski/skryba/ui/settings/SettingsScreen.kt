@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -91,8 +92,8 @@ fun SettingsScreen(nav: NavController) {
     Scaffold(topBar = { BackTopBar(str(R.string.settings), { nav.popBackStack() }) }) { pad ->
         Column(Modifier.padding(pad).fillMaxSize().verticalScroll(rememberScrollState())) {
             SectionTitle(str(R.string.sec_app_language))
-            Row(Modifier.padding(horizontal = 16.dp, vertical = 6.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                listOf("" to str(R.string.lang_system), "pl" to "Polski", "en" to "English").forEach { (tag, label) ->
+            Row(Modifier.horizontalScroll(rememberScrollState()).padding(horizontal = 16.dp, vertical = 6.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                listOf("" to str(R.string.lang_system), "pl" to "Polski", "en" to "English", "de" to "Deutsch", "fr" to "Français", "pt" to "Português").forEach { (tag, label) ->
                     FilterChip(language == tag, {
                         language = tag
                         Lang.set(context, tag)

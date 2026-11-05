@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="about_text" formatted="false">Skryba 1.0\n\nUm scanner de documentos que funciona totalmente offline. Sem contas, anúncios ou nuvem - todos os arquivos ficam no celular. A única conexão de rede é o compartilhamento opcional por link/QR code na rede local.\n\nBibliotecas: OpenCV, Tesseract OCR, PdfBox-Android, ZXing (licenças Apache 2.0).</string>
+    <string name="access_computer" formatted="false">Acesso pelo computador e tablet</string>
+    <string name="access_computer_text" formatted="false">Navegue, baixe e envie arquivos de um navegador na mesma rede Wi-Fi.</string>
+    <string name="act_compress" formatted="false">Comprimir</string>
+    <string name="act_convert" formatted="false">Converter</string>
+    <string name="act_merge" formatted="false">Unir</string>
+    <string name="act_protect" formatted="false">Proteger</string>
+    <string name="act_split" formatted="false">Dividir</string>
+    <string name="act_unlock" formatted="false">Remover senha</string>
+    <string name="act_watermark" formatted="false">Adicionar marca d\'água</string>
+    <string name="add" formatted="false">Adicionar</string>
+    <string name="add_lang_file" formatted="false">Adicionar um idioma de um arquivo</string>
+    <string name="add_lang_file_sub" formatted="false">Incluídos: 41 idiomas. Outros modelos do Tesseract (.traineddata) podem ser adicionados a partir do armazenamento do celular.</string>
+    <string name="add_signature_hint" formatted="false">Adicione uma assinatura com o botão Nova abaixo.</string>
+    <string name="adding_watermark" formatted="false">Adicionando marca d\'água</string>
+    <string name="after" formatted="false">Depois</string>
+    <string name="allow" formatted="false">Permitir</string>
+    <string name="already_compressed">O arquivo já está bem comprimido (%1$s)</string>
+    <string name="analyzing_photo" formatted="false">Analisando a foto</string>
+    <string name="and_n_more">e mais %1$d...</string>
+    <string name="apply" formatted="false">Aplicar</string>
+    <string name="archive_contents">Conteúdo do arquivo (%1$d)</string>
+    <string name="as_jpg" formatted="false">Como imagens JPG</string>
+    <string name="as_pdf" formatted="false">Como PDF</string>
+    <string name="as_text" formatted="false">Como texto</string>
+    <string name="auto" formatted="false">Auto</string>
+    <string name="back" formatted="false">Voltar</string>
+    <string name="backup_file">Backup do Skryba %1$s.zip</string>
+    <string name="backup_saved" formatted="false">Backup salvo</string>
+    <string name="batch" formatted="false">Lote</string>
+    <string name="batch_mode" formatted="false">Modo em lote</string>
+    <string name="batch_mode_sub" formatted="false">Várias fotos seguidas sem recortar após cada uma</string>
+    <string name="before" formatted="false">Antes</string>
+    <string name="camera_permission" formatted="false">É necessário acesso à câmera</string>
+    <string name="camera_permission_alt" formatted="false">Você também pode importar fotos da galeria.</string>
+    <string name="cancel" formatted="false">Cancelar</string>
+    <string name="change_file" formatted="false">Trocar arquivo</string>
+    <string name="choose_from_library" formatted="false">Escolher da biblioteca</string>
+    <string name="clear" formatted="false">Limpar</string>
+    <string name="close" formatted="false">Fechar</string>
+    <string name="color_blue" formatted="false">Azul</string>
+    <string name="color_gray" formatted="false">Cinza</string>
+    <string name="color_red" formatted="false">Vermelho</string>
+    <string name="compress_info" formatted="false">As imagens do arquivo são comprimidas. O texto permanece inalterado.</string>
+    <string name="compressed_from_to">Reduzido de %1$s para %2$s</string>
+    <string name="compressed_suffix">%1$s (comprimido).pdf</string>
+    <string name="compression_level" formatted="false">Nível de compressão</string>
+    <string name="convert_to_pdf" formatted="false">Converter para PDF</string>
+    <string name="converting_to_pdf" formatted="false">Convertendo para PDF</string>
+    <string name="copied" formatted="false">Copiado</string>
+    <string name="copy" formatted="false">Copiar</string>
+    <string name="copy_link" formatted="false"> Copiar link</string>
+    <string name="copy_suffix">%1$s (cópia)</string>
+    <string name="count_info" formatted="false">Tire a foto de cima, sobre um fundo liso. Toque para adicionar um objeto que faltou; toque em um marcador para removê-lo.</string>
+    <string name="count_sensitivity" formatted="false">Sensibilidade para separar objetos que se tocam</string>
+    <string name="counter_file">Contador %1$d.jpg</string>
+    <string name="counting" formatted="false">Contando</string>
+    <string name="create_backup" formatted="false">Criar backup</string>
+    <string name="create_backup_sub" formatted="false">Todos os documentos, arquivos e assinaturas em um único arquivo ZIP</string>
+    <string name="creating_backup" formatted="false">Criando backup</string>
+    <string name="creating_pdf" formatted="false">Criando PDF</string>
+    <string name="creating_word" formatted="false">Criando documento do Word</string>
+    <string name="crop" formatted="false">Recortar</string>
+    <string name="crop_page" formatted="false">Recortar página</string>
+    <string name="current_password" formatted="false">Senha atual do arquivo</string>
+    <string name="dark_objects" formatted="false">Objetos escuros</string>
+    <string name="delete" formatted="false">Excluir</string>
+    <string name="delete_doc_q" formatted="false">Excluir documento?</string>
+    <string name="delete_doc_text">\"%1$s\" será excluído permanentemente do celular.</string>
+    <string name="delete_doc_text2">\"%1$s\" será excluído permanentemente.</string>
+    <string name="delete_document" formatted="false">Excluir documento</string>
+    <string name="delete_file_q" formatted="false">Excluir arquivo?</string>
+    <string name="delete_file_text">\"%1$s\" será excluído permanentemente.</string>
+    <string name="delete_page_q" formatted="false">Excluir página?</string>
+    <string name="delete_page_text">A página %1$d será removida do documento.</string>
+    <string name="delete_signature_q" formatted="false">Excluir assinatura?</string>
+    <string name="delete_signature_text" formatted="false">A assinatura será removida da lista de assinaturas salvas.</string>
+    <string name="details" formatted="false">Detalhes</string>
+    <string name="discard" formatted="false">Descartar</string>
+    <string name="discard_photos_text">As fotos tiradas (%1$d) serão excluídas.</string>
+    <string name="discard_scan_q" formatted="false">Descartar digitalização?</string>
+    <string name="discard_scan_text" formatted="false">As fotos que não foram salvas serão excluídas.</string>
+    <string name="doc_prefix_scan" formatted="false">Digitalização</string>
+    <string name="done" formatted="false">Concluído</string>
+    <string name="done_n">Concluído (arquivos: %1$d)</string>
+    <string name="draw_signature" formatted="false">Desenhe sua assinatura</string>
+    <string name="duplicate" formatted="false">Duplicar</string>
+    <string name="each_page" formatted="false">Cada página separadamente</string>
+    <string name="earlier" formatted="false">Anteriores</string>
+    <string name="edit_as_scan" formatted="false">Editar como digitalização</string>
+    <string name="ela_hint" formatted="false">Áreas claras e nitidamente distintas no mapa ELA podem indicar edição. Bordas e detalhes finos são sempre mais claros. O resultado é um indício, não uma prova.</string>
+    <string name="ela_map" formatted="false">Mapa ELA</string>
+    <string name="err_camera">Erro da câmera: %1$s</string>
+    <string name="err_camera_start">Não foi possível iniciar a câmera: %1$s</string>
+    <string name="err_create_file">Não foi possível criar o arquivo %1$s</string>
+    <string name="err_empty_doc" formatted="false">O documento está vazio ou danificado</string>
+    <string name="err_generic">Ocorreu um erro (%1$s)</string>
+    <string name="err_load_signature" formatted="false">Não foi possível carregar a assinatura</string>
+    <string name="err_not_ooxml" formatted="false">Este não é um arquivo Office Open XML (docx/xlsx/pptx)</string>
+    <string name="err_ocr_init">Não foi possível iniciar o OCR (%1$s)</string>
+    <string name="err_old_format">O formato antigo .%1$s não é compatível. Salve o arquivo como .%1$sx e tente novamente.</string>
+    <string name="err_oom" formatted="false">Memória insuficiente para esta operação</string>
+    <string name="err_pdf_password" formatted="false">O arquivo PDF está protegido por senha</string>
+    <string name="err_pdf_password_ui" formatted="false">O arquivo está protegido por senha ou a senha está errada</string>
+    <string name="err_ranges" formatted="false">Digite intervalos de páginas, p. ex. 1-3, 5, 7-9</string>
+    <string name="err_read_image" formatted="false">Não foi possível ler a imagem</string>
+    <string name="err_save_photo" formatted="false">Não foi possível salvar a foto</string>
+    <string name="err_unknown_type">Tipo de arquivo não compatível: .%1$s</string>
+    <string name="exporting_images" formatted="false">Exportando imagens</string>
+    <string name="file" formatted="false">Arquivo</string>
+    <string name="file_default" formatted="false">arquivo</string>
+    <string name="file_name" formatted="false">Nome do arquivo</string>
+    <string name="files_n">Arquivos (%1$d)</string>
+    <string name="filter_auto" formatted="false">Auto</string>
+    <string name="filter_bw" formatted="false">Preto e branco</string>
+    <string name="filter_for_all" formatted="false">Filtro para\ntodas</string>
+    <string name="filter_gray" formatted="false">Escala de cinza</string>
+    <string name="filter_lighten" formatted="false">Clarear</string>
+    <string name="filter_magic" formatted="false">Sem sombras</string>
+    <string name="filter_no_ink" formatted="false">Sem respostas</string>
+    <string name="filter_original" formatted="false">Original</string>
+    <string name="filter_whiteboard" formatted="false">Quadro branco</string>
+    <string name="found_editors">Programas encontrados: %1$s</string>
+    <string name="from_gallery" formatted="false">Da galeria</string>
+    <string name="from_phone" formatted="false"> Do celular</string>
+    <string name="from_skryba" formatted="false"> Do Skryba</string>
+    <string name="gallery" formatted="false">Galeria</string>
+    <string name="group_ai" formatted="false">Ferramentas de IA</string>
+    <string name="group_convert" formatted="false">Converter</string>
+    <string name="group_edit" formatted="false">Editar PDF</string>
+    <string name="group_scan" formatted="false">Digitalizar</string>
+    <string name="hint_delete" formatted="false">Selecione as páginas a excluir e toque em Excluir.</string>
+    <string name="hint_organize" formatted="false">Selecione uma página para movê-la, girá-la ou excluí-la.</string>
+    <string name="hint_rotate" formatted="false">Selecione páginas e gire-as com os botões abaixo.</string>
+    <string name="how1" formatted="false">Os arquivos são enviados direto do celular, sem nuvem e sem internet.</string>
+    <string name="how2" formatted="false">Os dois dispositivos precisam estar na mesma rede Wi-Fi (ou no ponto de acesso deste celular).</string>
+    <string name="how3" formatted="false">O link funciona apenas enquanto esta tela estiver aberta.</string>
+    <string name="how4" formatted="false">Na página você também pode enviar arquivos do computador para o celular.</string>
+    <string name="how_it_works" formatted="false">Como funciona</string>
+    <string name="id_back" formatted="false">Agora tire uma foto do VERSO do documento</string>
+    <string name="id_compose_info" formatted="false">A frente e o verso serão colocados em uma página A4 em tamanho real.</string>
+    <string name="id_front" formatted="false">Tire uma foto da FRENTE do documento</string>
+    <string name="image" formatted="false">Imagem</string>
+    <string name="image_quality">Qualidade da imagem: %1$d%%</string>
+    <string name="image_quality_setting">Qualidade da imagem: %1$d%%</string>
+    <string name="image_quality_title" formatted="false">Qualidade da imagem</string>
+    <string name="import_files" formatted="false">Importar arquivos do celular</string>
+    <string name="imported_n">Arquivos importados: %1$d</string>
+    <string name="importing" formatted="false">Importando</string>
+    <string name="importing_pages" formatted="false">Importando páginas</string>
+    <string name="input_images" formatted="false">fotos</string>
+    <string name="insert" formatted="false"> Inserir</string>
+    <string name="insert_signature" formatted="false"> Inserir assinatura</string>
+    <string name="inserting_signature" formatted="false">Inserindo assinatura</string>
+    <string name="jpg_zip_suffix">%1$s (JPG).zip</string>
+    <string name="lang_added">Idioma adicionado: %1$s</string>
+    <string name="lang_code" formatted="false">Código do idioma</string>
+    <string name="lang_code_hint" formatted="false">p. ex. lat, gle, eus</string>
+    <string name="lang_system" formatted="false">Idioma do celular</string>
+    <string name="languages" formatted="false">Idiomas</string>
+    <string name="later" formatted="false">Mais tarde</string>
+    <string name="level_light" formatted="false">Leve</string>
+    <string name="level_medium" formatted="false">Médio</string>
+    <string name="level_strong" formatted="false">Forte</string>
+    <string name="library_title" formatted="false">Biblioteca do Skryba</string>
+    <string name="light_objects" formatted="false">Objetos claros</string>
+    <string name="link" formatted="false">Link</string>
+    <string name="link_copied" formatted="false">Link copiado</string>
+    <string name="link_qr" formatted="false">Link / QR</string>
+    <string name="link_qr_code" formatted="false">Link / QR code</string>
+    <string name="live_detection" formatted="false">Detecção de bordas ao vivo</string>
+    <string name="live_detection_sub" formatted="false">Contorno da página visível na câmera</string>
+    <string name="loading" formatted="false">Carregando</string>
+    <string name="loading_model" formatted="false">Carregando modelo</string>
+    <string name="loading_photos" formatted="false">Carregando fotos</string>
+    <string name="mega_info" formatted="false">Fotografe um documento grande (pôster, mapa, A3) em várias partes, em ordem, com cerca de 30% de sobreposição entre as fotos. O Skryba as unirá em uma única digitalização.</string>
+    <string name="mode_book" formatted="false">Livro</string>
+    <string name="mode_book_hint" formatted="false">Abra o livro, com as duas páginas no enquadramento</string>
+    <string name="mode_document" formatted="false">Documento</string>
+    <string name="mode_document_hint" formatted="false">Posicione o documento no enquadramento</string>
+    <string name="mode_id" formatted="false">Documento de identidade</string>
+    <string name="mode_id_hint" formatted="false">Tire uma foto da frente e depois do verso</string>
+    <string name="mode_slides" formatted="false">Slides</string>
+    <string name="mode_slides_hint" formatted="false">Capture uma tela ou um slide de apresentação</string>
+    <string name="mode_test" formatted="false">Prova</string>
+    <string name="mode_test_hint" formatted="false">Remove respostas escritas com caneta colorida</string>
+    <string name="mode_text" formatted="false">Texto</string>
+    <string name="mode_text_hint" formatted="false">A foto será convertida em texto (OCR)</string>
+    <string name="mode_whiteboard" formatted="false">Quadro branco</string>
+    <string name="mode_whiteboard_hint" formatted="false">Capture o quadro branco inteiro</string>
+    <string name="modified_suffix">%1$s (modificado).pdf</string>
+    <string name="more" formatted="false">Mais</string>
+    <string name="move_down" formatted="false">Mover para baixo</string>
+    <string name="move_up" formatted="false">Mover para cima</string>
+    <string name="name" formatted="false">Nome</string>
+    <string name="new_signature" formatted="false"> Nova</string>
+    <string name="next" formatted="false">Avançar</string>
+    <string name="next_crop_save" formatted="false">Avançar: recortar e salvar como documento</string>
+    <string name="next_page" formatted="false">Avançar</string>
+    <string name="no_app_to_open" formatted="false">Nenhum aplicativo pode abrir este arquivo</string>
+    <string name="no_documents" formatted="false">Nenhum documento</string>
+    <string name="no_documents_text" formatted="false">Toque em Digitalizar para digitalizar seu primeiro documento. Tudo fica no seu celular.</string>
+    <string name="no_files" formatted="false">Nenhum arquivo</string>
+    <string name="no_files_text" formatted="false">PDF, Word, Excel e outros arquivos criados no aplicativo ou importados aparecerão aqui.</string>
+    <string name="no_local_network" formatted="false">Sem rede local</string>
+    <string name="no_local_network_text" formatted="false">Conecte o celular ao Wi-Fi ou ative um ponto de acesso e conecte o outro dispositivo a ele. Não é necessária internet.</string>
+    <string name="no_match">Nada corresponde a \"%1$s\".</string>
+    <string name="no_matching_files">Nenhum arquivo correspondente (%1$s).</string>
+    <string name="no_preview" formatted="false">Sem pré-visualização para este tipo de arquivo.</string>
+    <string name="no_preview_sub" formatted="false">Use o menu para abri-lo em outro aplicativo.</string>
+    <string name="no_ps_traces" formatted="false">Nenhum vestígio de Photoshop ou de outros editores encontrado nos metadados.</string>
+    <string name="no_results" formatted="false">Sem resultados</string>
+    <string name="not_tess_model" formatted="false">Isto não parece um modelo do Tesseract (.traineddata)</string>
+    <string name="objects_counted" formatted="false">objetos contados</string>
+    <string name="ocr_no_text" formatted="false">Nenhum texto encontrado. Tente outro idioma (ícone de globo) ou uma foto com melhor iluminação.</string>
+    <string name="ocr_running" formatted="false">Reconhecendo texto offline...</string>
+    <string name="ocr_scans_info" formatted="false">Páginas sem camada de texto (digitalizações) serão reconhecidas por OCR nos idiomas selecionados.</string>
+    <string name="office_formats_info" formatted="false">Os novos formatos do Office (.docx, .xlsx, .pptx), além de .txt e .csv, são compatíveis.</string>
+    <string name="ok" formatted="false">OK</string>
+    <string name="opacity">Opacidade: %1$d%%</string>
+    <string name="open" formatted="false">Abrir</string>
+    <string name="open_in_other" formatted="false">Abrir em outro aplicativo</string>
+    <string name="open_with" formatted="false">Abrir com</string>
+    <string name="original" formatted="false">Original</string>
+    <string name="output_name" formatted="false">Nome do arquivo de saída</string>
+    <string name="page_n">Página %1$d</string>
+    <string name="page_size" formatted="false">Tamanho da página</string>
+    <string name="page_slash">Página %1$d / %2$d</string>
+    <string name="page_text_n">Texto da página %1$d</string>
+    <string name="page_x_of_y">Página %1$d de %2$d</string>
+    <string name="pages_short">%1$d pág.</string>
+    <string name="pagesize_fit" formatted="false">Ajustar à imagem</string>
+    <string name="password" formatted="false">Senha</string>
+    <string name="password_for">Senha de \"%1$s\"</string>
+    <string name="password_min" formatted="false">Senha (mín. 4 caracteres)</string>
+    <string name="password_protected" formatted="false">Arquivo protegido por senha</string>
+    <string name="password_repeat" formatted="false">Repita a senha</string>
+    <string name="password_warning" formatted="false">O arquivo não pode ser aberto sem a senha. Lembre-se dela - não é possível recuperá-la.</string>
+    <string name="passwords_differ" formatted="false">As senhas não coincidem</string>
+    <string name="pdf" formatted="false">PDF</string>
+    <string name="pdf_text_layer" formatted="false">PDF com camada de texto</string>
+    <string name="pdf_text_layer_sub" formatted="false">Adicionar por padrão texto OCR invisível aos PDFs (busca e cópia)</string>
+    <string name="photo_default" formatted="false">foto</string>
+    <string name="photos_order">Fotos (%1$d) - na ordem de união</string>
+    <string name="photoshop_info" formatted="false">Verifica se a foto foi editada no Photoshop ou em outro editor de imagens (metadados, histórico de salvamento, análise de compressão).</string>
+    <string name="preparing" formatted="false">Preparando</string>
+    <string name="preparing_pdf" formatted="false">Preparando PDF</string>
+    <string name="preview_failed" formatted="false">Não foi possível exibir o arquivo</string>
+    <string name="previous" formatted="false">Anterior</string>
+    <string name="processing" formatted="false">Processando</string>
+    <string name="processing_page" formatted="false">Processando página</string>
+    <string name="protect_password" formatted="false">Proteger com senha</string>
+    <string name="protected_suffix">%1$s (protegido).pdf</string>
+    <string name="q_high" formatted="false">Alta</string>
+    <string name="q_low" formatted="false">Baixa</string>
+    <string name="q_medium" formatted="false">Média</string>
+    <string name="qr_code" formatted="false">QR code</string>
+    <string name="ranges" formatted="false">Intervalos</string>
+    <string name="ranges_hint" formatted="false">Intervalos, p. ex. 1-3, 5, 7-9</string>
+    <string name="received_file">Arquivo recebido: %1$s</string>
+    <string name="recognize" formatted="false">Reconhecer</string>
+    <string name="recognize_again" formatted="false">Reconhecer novamente</string>
+    <string name="recognized_text" formatted="false">Texto reconhecido</string>
+    <string name="recognizing_text" formatted="false">Reconhecendo texto</string>
+    <string name="remove" formatted="false">Remover</string>
+    <string name="remove_scratches" formatted="false">Remover riscos e poeira</string>
+    <string name="remove_signatures" formatted="false"> Remover assinaturas</string>
+    <string name="removing_signatures" formatted="false">Removendo assinaturas</string>
+    <string name="rename" formatted="false">Renomear</string>
+    <string name="reorder_pages" formatted="false">Reordenar páginas</string>
+    <string name="restore_backup" formatted="false">Restaurar backup</string>
+    <string name="restore_backup_sub" formatted="false">Carregar um arquivo ZIP criado no Skryba</string>
+    <string name="restore_info" formatted="false">Remove riscos e poeira, reduz o ruído, elimina o amarelamento e melhora o contraste de fotos antigas. Tudo é executado no celular.</string>
+    <string name="restored_n">Documentos restaurados: %1$d</string>
+    <string name="restored_suffix">%1$s (restaurado).jpg</string>
+    <string name="restoring" formatted="false">Restaurando foto</string>
+    <string name="restoring_backup" formatted="false">Restaurando backup</string>
+    <string name="revive_colors" formatted="false">Reavivar cores desbotadas</string>
+    <string name="rotate" formatted="false">Girar</string>
+    <string name="rotate_left" formatted="false">Esquerda</string>
+    <string name="rotate_right" formatted="false">Direita</string>
+    <string name="save" formatted="false">Salvar</string>
+    <string name="save_as_pdf" formatted="false">Salvar como PDF</string>
+    <string name="save_as_word" formatted="false">Salvar como Word</string>
+    <string name="save_images_zip" formatted="false">Salvar imagens (ZIP)</string>
+    <string name="save_marked" formatted="false"> Salvar com marcadores</string>
+    <string name="save_result" formatted="false"> Salvar resultado</string>
+    <string name="save_spaced" formatted="false"> Salvar</string>
+    <string name="save_txt" formatted="false">Salvar TXT</string>
+    <string name="save_word" formatted="false">Salvar Word</string>
+    <string name="saved_in_files" formatted="false">Salvo na aba Arquivos.</string>
+    <string name="saved_n">Arquivos salvos: %1$d</string>
+    <string name="saved_on_device" formatted="false">Salvo no dispositivo</string>
+    <string name="saving" formatted="false">Salvando</string>
+    <string name="saving_document" formatted="false">Salvando documento</string>
+    <string name="scan" formatted="false">Digitalizar</string>
+    <string name="scan_pages">Digitalização, %1$d pág.</string>
+    <string name="scan_this_photo" formatted="false">Digitalizar esta foto</string>
+    <string name="scan_with_other" formatted="false">Leia o código com a câmera do outro dispositivo</string>
+    <string name="score">Pontuação: %1$d/100</string>
+    <string name="search" formatted="false">Buscar</string>
+    <string name="search_hint" formatted="false">Buscar por nomes e conteúdo</string>
+    <string name="searchable_text" formatted="false">Texto pesquisável (OCR)</string>
+    <string name="searchable_text_sub" formatted="false">Mais lento, mas o texto do PDF pode ser selecionado e pesquisado</string>
+    <string name="sec_about" formatted="false">Sobre</string>
+    <string name="sec_app_language" formatted="false">Idioma do aplicativo</string>
+    <string name="sec_backup" formatted="false">Backup (sem nuvem)</string>
+    <string name="sec_ocr" formatted="false">Reconhecimento de texto (OCR)</string>
+    <string name="sec_scanning" formatted="false">Digitalização</string>
+    <string name="select_all" formatted="false">Selecionar tudo</string>
+    <string name="selected_n">Selecionados: %1$d</string>
+    <string name="send_link" formatted="false"> Enviar link</string>
+    <string name="settings" formatted="false">Configurações</string>
+    <string name="share" formatted="false">Compartilhar</string>
+    <string name="share_chooser" formatted="false">Compartilhar</string>
+    <string name="share_pdf" formatted="false">Compartilhar PDF</string>
+    <string name="share_save" formatted="false">Compartilhar / salvar</string>
+    <string name="share_start_failed" formatted="false">Não foi possível iniciar o compartilhamento.</string>
+    <string name="share_text_chooser" formatted="false">Compartilhar texto</string>
+    <string name="share_via_link" formatted="false">Compartilhar por link</string>
+    <string name="shared_files" formatted="false">Arquivos compartilhados</string>
+    <string name="sheet_page">Página %1$d</string>
+    <string name="show_password" formatted="false">Mostrar senha</string>
+    <string name="sign" formatted="false">Assinar</string>
+    <string name="sign_here" formatted="false">Assine aqui com o dedo</string>
+    <string name="sign_hint" formatted="false">Arraste a assinatura com um dedo e redimensione com dois</string>
+    <string name="sign_page" formatted="false">Assinar página</string>
+    <string name="sign_pdf" formatted="false">Assinar PDF</string>
+    <string name="signed_suffix">%1$s (assinado).pdf</string>
+    <string name="single" formatted="false">Única</string>
+    <string name="split_mode" formatted="false">Modo de divisão</string>
+    <string name="split_spread" formatted="false">Dividir a página dupla em 2 páginas</string>
+    <string name="split_suffix">%1$s (pág. %2$s).pdf</string>
+    <string name="src_camera" formatted="false"> Câmera</string>
+    <string name="src_file" formatted="false"> Arquivo</string>
+    <string name="src_gallery" formatted="false"> Galeria</string>
+    <string name="stitch_button" formatted="false"> Unir em uma única digitalização</string>
+    <string name="stitch_failed" formatted="false">Falha ao combinar as fotos.</string>
+    <string name="stitch_need_two" formatted="false">São necessárias pelo menos 2 fotos</string>
+    <string name="stitch_no_match">Não foi possível combinar a foto %1$d.</string>
+    <string name="stitch_too_little">As fotos %1$d e %2$d têm muito pouco em comum. Tire as fotos com mais sobreposição.</string>
+    <string name="stitching" formatted="false">Unindo fotos</string>
+    <string name="str_gentle" formatted="false">Suave</string>
+    <string name="str_medium" formatted="false">Média</string>
+    <string name="str_strong" formatted="false">Forte</string>
+    <string name="strength">Intensidade: %1$s</string>
+    <string name="tab_docs" formatted="false">Documentos</string>
+    <string name="tab_files" formatted="false">Arquivos</string>
+    <string name="tab_tools" formatted="false">Ferramentas</string>
+    <string name="tamper_camera">Câmera: %1$s.</string>
+    <string name="tamper_dates">A data de modificação (%1$s) difere da data de captura (%2$s).</string>
+    <string name="tamper_editors">Os metadados indicam edição em: %1$s.</string>
+    <string name="tamper_ela_outliers">Análise ELA: %1$s%% da imagem tem um nível de compressão claramente diferente (possível colagem ou retoque).</string>
+    <string name="tamper_ela_uniform" formatted="false">Análise ELA: o nível de compressão é uniforme em toda a foto.</string>
+    <string name="tamper_info" formatted="false">A análise ELA mostra áreas com um nível de compressão JPEG diferente - típico de fragmentos colados ou retocados. Os metadados do arquivo também são verificados. Escolha o arquivo original (de preferência por \"Arquivo\").</string>
+    <string name="tamper_no_camera" formatted="false">Sem informações da câmera (os metadados podem ter sido removidos).</string>
+    <string name="tamper_not_jpeg" formatted="false">O arquivo não é um JPEG - a análise ELA é menos confiável.</string>
+    <string name="tamper_software">Software registrado no arquivo: %1$s.</string>
+    <string name="tamper_verdict_high" formatted="false">Alta probabilidade de edição</string>
+    <string name="tamper_verdict_low" formatted="false">Sem sinais claros de edição</string>
+    <string name="tamper_verdict_mid" formatted="false">Possível edição - verifique as áreas destacadas</string>
+    <string name="tamper_xmp_history" formatted="false">O arquivo contém um histórico de salvamento XMP (típico do Photoshop).</string>
+    <string name="text" formatted="false">Texto</string>
+    <string name="text_languages" formatted="false">Idiomas do texto</string>
+    <string name="text_languages_hint" formatted="false">Escolha de 1 a 3 idiomas usados no documento. Mais idiomas = mais lento.</string>
+    <string name="to_computer" formatted="false">Para o computador</string>
+    <string name="to_phone" formatted="false">Para o celular</string>
+    <string name="tool_compress" formatted="false">Comprimir PDF</string>
+    <string name="tool_compress_sub" formatted="false">Arquivo menor</string>
+    <string name="tool_count" formatted="false">Contador de objetos</string>
+    <string name="tool_count_sub" formatted="false">Conte tubos, moedas, comprimidos...</string>
+    <string name="tool_delete_pages" formatted="false">Excluir páginas</string>
+    <string name="tool_delete_pages_sub" formatted="false">Remova páginas desnecessárias</string>
+    <string name="tool_e_signature" formatted="false">Assinatura eletrônica</string>
+    <string name="tool_e_signature_sub" formatted="false">Desenhe e insira uma assinatura</string>
+    <string name="tool_excel_to_pdf" formatted="false">Excel para PDF</string>
+    <string name="tool_excel_to_pdf_sub" formatted="false">Arquivos .xlsx e .csv</string>
+    <string name="tool_image_to_text" formatted="false">Imagem para texto</string>
+    <string name="tool_image_to_text_sub" formatted="false">OCR em 41 idiomas, offline</string>
+    <string name="tool_jpg_to_pdf" formatted="false">JPG para PDF</string>
+    <string name="tool_jpg_to_pdf_sub" formatted="false">Fotos em um único arquivo PDF</string>
+    <string name="tool_mega_scan" formatted="false">Mega digitalização</string>
+    <string name="tool_mega_scan_sub" formatted="false">Una várias fotos de um documento grande</string>
+    <string name="tool_merge" formatted="false">Unir PDF</string>
+    <string name="tool_merge_sub" formatted="false">Combine vários arquivos em um</string>
+    <string name="tool_organize" formatted="false">Organizar páginas</string>
+    <string name="tool_organize_sub" formatted="false">Reordenar, girar, excluir</string>
+    <string name="tool_pdf_to_excel" formatted="false">PDF para Excel</string>
+    <string name="tool_pdf_to_excel_sub" formatted="false">Tabelas para uma planilha .xlsx</string>
+    <string name="tool_pdf_to_jpg" formatted="false">PDF para JPG</string>
+    <string name="tool_pdf_to_jpg_sub" formatted="false">Páginas como imagens</string>
+    <string name="tool_pdf_to_ppt" formatted="false">PDF para PowerPoint</string>
+    <string name="tool_pdf_to_ppt_sub" formatted="false">Cada página como um slide</string>
+    <string name="tool_pdf_to_word" formatted="false">PDF para Word</string>
+    <string name="tool_pdf_to_word_sub" formatted="false">Documento .docx editável</string>
+    <string name="tool_photoshop" formatted="false">Detecção de Photoshop</string>
+    <string name="tool_photoshop_sub" formatted="false">Vestígios de editores de imagem</string>
+    <string name="tool_ppt_to_pdf" formatted="false">PowerPoint para PDF</string>
+    <string name="tool_ppt_to_pdf_sub" formatted="false">Arquivos .pptx</string>
+    <string name="tool_protect" formatted="false">Proteger com senha</string>
+    <string name="tool_protect_sub" formatted="false">Criptografia AES-256</string>
+    <string name="tool_restore" formatted="false">Restauração de fotos</string>
+    <string name="tool_restore_sub" formatted="false">Remove riscos, ruído e amarelamento</string>
+    <string name="tool_rotate" formatted="false">Girar páginas</string>
+    <string name="tool_rotate_sub" formatted="false">Gire as páginas selecionadas</string>
+    <string name="tool_scan_book" formatted="false">Digitalizar livro</string>
+    <string name="tool_scan_book_sub" formatted="false">Página dupla dividida em duas páginas</string>
+    <string name="tool_scan_doc" formatted="false">Digitalizar documentos</string>
+    <string name="tool_scan_doc_sub" formatted="false">Várias páginas de uma vez, recorte automático</string>
+    <string name="tool_scan_id" formatted="false">Digitalizar documento de identidade</string>
+    <string name="tool_scan_id_sub" formatted="false">Frente e verso em uma página A4</string>
+    <string name="tool_scan_slides" formatted="false">Slides</string>
+    <string name="tool_scan_slides_sub" formatted="false">Fotos de telas e apresentações</string>
+    <string name="tool_scan_test" formatted="false">Digitalizar prova</string>
+    <string name="tool_scan_test_sub" formatted="false">Remove respostas escritas com caneta</string>
+    <string name="tool_scan_whiteboard" formatted="false">Quadro branco</string>
+    <string name="tool_scan_whiteboard_sub" formatted="false">Captura nítida de um quadro branco</string>
+    <string name="tool_sign" formatted="false">Assinar PDF</string>
+    <string name="tool_sign_sub" formatted="false">Assinatura manuscrita em uma página</string>
+    <string name="tool_split" formatted="false">Dividir PDF</string>
+    <string name="tool_split_sub" formatted="false">Intervalos de páginas selecionados</string>
+    <string name="tool_tamper" formatted="false">Detecção de adulteração</string>
+    <string name="tool_tamper_sub" formatted="false">Análise ELA e de metadados</string>
+    <string name="tool_unlock" formatted="false">Remover senha</string>
+    <string name="tool_unlock_sub" formatted="false">Desbloqueie seu próprio arquivo PDF</string>
+    <string name="tool_watermark" formatted="false">Marca d\'água</string>
+    <string name="tool_watermark_sub" formatted="false">Texto em cada página</string>
+    <string name="tool_word_to_pdf" formatted="false">Word para PDF</string>
+    <string name="tool_word_to_pdf_sub" formatted="false">Arquivos .docx e .txt</string>
+    <string name="torch" formatted="false">Lanterna</string>
+    <string name="total_n">Total: %1$d</string>
+    <string name="unlocked_suffix">%1$s (sem senha).pdf</string>
+    <string name="watermark" formatted="false">Marca d\'água</string>
+    <string name="watermark_default" formatted="false">CÓPIA</string>
+    <string name="watermark_pdf" formatted="false">Marca d\'água (PDF)</string>
+    <string name="watermark_suffix">%1$s (marca d\'água).pdf</string>
+    <string name="web_documents" formatted="false">Documentos</string>
+    <string name="web_download" formatted="false">Baixar</string>
+    <string name="web_expired" formatted="false">Este link expirou. Peça um novo QR code.</string>
+    <string name="web_files" formatted="false">Arquivos</string>
+    <string name="web_footer" formatted="false">Os arquivos são transferidos diretamente do celular pela rede local (aplicativo Skryba).</string>
+    <string name="web_lang" formatted="false">pt</string>
+    <string name="web_no_file" formatted="false">Arquivo inexistente</string>
+    <string name="web_no_files" formatted="false">Nenhum arquivo.</string>
+    <string name="web_not_found" formatted="false">Não encontrado.</string>
+    <string name="web_pages_short">%1$d pág.</string>
+    <string name="web_upload_error" formatted="false">Falha no envio</string>
+    <string name="web_upload_title" formatted="false">Enviar para o celular</string>
+    <string name="web_uploaded" formatted="false">Enviado: </string>
+    <string name="web_uploading" formatted="false">Enviando: </string>
+    <string name="which_page_sign" formatted="false">Qual página assinar?</string>
+    <string name="whole" formatted="false">Tudo</string>
+    <string name="wifi_settings" formatted="false">Configurações de Wi-Fi</string>
+    <string name="wm_confidential" formatted="false">CONFIDENCIAL</string>
+    <string name="wm_text" formatted="false">Texto da marca d\'água</string>
+    <string name="wrong_password" formatted="false">Senha incorreta</string>
+</resources>
