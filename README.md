@@ -66,3 +66,8 @@ in the system per-app language settings.
 
 Everything is processed on your device. Skryba does not collect data, does not require
 an account, and does not contain ads or trackers.
+
+## Screenshots
+![skryba_scan.png](.github/images/skryba_scan.png)
+
+![skryba_edit_scan.png](.github/images/skryba_edit_scan.png)
