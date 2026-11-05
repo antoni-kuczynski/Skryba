@@ -10,8 +10,8 @@ import kotlin.math.max
 import kotlin.math.roundToInt
 
 /**
- * Renderowanie stron PDF do bitmap. Domyślnie systemowy PdfRenderer (szybki),
- * dla plików zaszyfrowanych PdfBox z hasłem.
+ * Rendering PDF pages to bitmaps. By default the system PdfRenderer (fast),
+ * and PdfBox for password-protected files.
  */
 object PdfRender {
 
@@ -23,7 +23,7 @@ object PdfRender {
         PdfTools.pageCount(file, password)
     }
 
-    /** Proporcje stron (szerokość/wysokość) bez renderowania. */
+    /** Page aspect ratios (width/height) without rendering. */
     fun pageAspects(file: File, password: String? = null): List<Float> = try {
         ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY).use { fd ->
             PdfRenderer(fd).use { r ->
@@ -39,7 +39,7 @@ object PdfRender {
         }
     }
 
-    /** Renderuje stronę tak, by dłuższy bok miał [maxSide] pikseli (albo w zadanym dpi). */
+    /** Renders a page so the longer side has [maxSide] pixels (or at the given dpi). */
     fun render(file: File, index: Int, maxSide: Int = 1400, dpi: Int? = null, password: String? = null): Bitmap = try {
         ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY).use { fd ->
             PdfRenderer(fd).use { r ->

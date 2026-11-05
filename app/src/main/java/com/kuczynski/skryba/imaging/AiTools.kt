@@ -30,7 +30,7 @@ import org.opencv.features2d.ORB
 import org.opencv.imgproc.Imgproc
 import org.opencv.photo.Photo
 
-/** Narzędzia "AI" działające lokalnie, na klasycznym widzeniu komputerowym (OpenCV). */
+/** "AI" tools that run locally, using classical computer vision (OpenCV). */
 object AiTools {
 
     private fun toRgb(bmp: Bitmap): Mat {
@@ -55,11 +55,11 @@ object AiTools {
         return bmp
     }
 
-    // ---------------- Renowacja starych zdjęć ----------------
+    // ---------------- Old photo restoration ----------------
 
     /**
-     * Odnawia stare zdjęcie: usuwa rysy i kurz (inpainting), odszumia, usuwa zażółcenie,
-     * poprawia kontrast i ostrość. [strength] 1..3.
+     * Restores an old photo: removes scratches and dust (inpainting), denoises, removes yellowing,
+     * improves contrast and sharpness. [strength] 1..3.
      */
     fun restorePhoto(src: Bitmap, strength: Int, removeScratches: Boolean, colorize: Boolean): Bitmap {
         val img = ImageIO.limit(src, 1800)
@@ -80,7 +80,7 @@ object AiTools {
             Imgproc.threshold(black, black, t + 10, 255.0, Imgproc.THRESH_BINARY)
             Core.bitwise_or(top, black, mask)
             Imgproc.dilate(mask, mask, Imgproc.getStructuringElement(Imgproc.MORPH_ELLIPSE, Size(3.0, 3.0)))
-            // Za duża maska oznacza, że to nie rysy, tylko treść zdjęcia - wtedy pomijamy.
+            // A mask that is too large means it is not scratches but photo content - skip it then.
             if (Core.countNonZero(mask) < mask.total() * 0.08) {
                 val out = Mat()
                 Photo.inpaint(rgb, mask, out, 3.0, Photo.INPAINT_TELEA)
@@ -95,7 +95,7 @@ object AiTools {
         Photo.fastNlMeansDenoisingColored(rgb, den, h, h, 7, 21)
         rgb.release()
 
-        // Balans bieli metodą "szarego świata" - usuwa zażółcenie i przebarwienia.
+        // Gray-world white balance - removes yellowing and color casts.
         val ch = ArrayList<Mat>()
         Core.split(den, ch)
         val means = ch.map { Core.mean(it).`val`[0] }
@@ -111,7 +111,7 @@ object AiTools {
         Core.normalize(lch[0], lch[0], 0.0, 255.0, Core.NORM_MINMAX)
         Imgproc.createCLAHE(1.5 + strength * 0.5, Size(8.0, 8.0)).apply(lch[0], lch[0])
         if (colorize) {
-            // Delikatne ożywienie wyblakłych kolorów (kanały a/b od środka 128).
+            // Gentle revival of faded colors (a/b channels away from the center 128).
             for (i in 1..2) lch[i].convertTo(lch[i], -1, 1.35, -128 * 0.35)
         }
         Core.merge(lch, lab)
@@ -126,7 +126,7 @@ object AiTools {
         return toBitmap(den).also { den.release() }
     }
 
-    // ---------------- Wykrywanie manipulacji ----------------
+    // ---------------- Tamper detection ----------------
 
     data class TamperReport(
         val heatmap: Bitmap,
@@ -143,15 +143,15 @@ object AiTools {
     )
 
     /**
-     * Analiza ELA (Error Level Analysis) + metadane. Fragmenty wklejone lub retuszowane
-     * zwykle mają inny poziom błędu kompresji JPEG niż reszta zdjęcia.
+     * ELA (Error Level Analysis) + metadata. Pasted or retouched fragments
+     * usually have a different JPEG compression error level than the rest of the photo.
      */
     fun analyzeTampering(file: File): TamperReport {
         val findings = ArrayList<String>()
         val editors = ArrayList<String>()
         var score = 0
 
-        // 1) Metadane EXIF i XMP.
+        // 1) EXIF and XMP metadata.
         val exif = runCatching { ExifInterface(file) }.getOrNull()
         val software = exif?.getAttribute(ExifInterface.TAG_SOFTWARE)
         val make = exif?.getAttribute(ExifInterface.TAG_MAKE)
@@ -192,7 +192,7 @@ object AiTools {
         val isJpeg = head.size > 3 && head[0] == 0xFF.toByte() && head[1] == 0xD8.toByte()
         if (!isJpeg) findings += str(R.string.tamper_not_jpeg)
 
-        // 2) ELA: różnica po ponownej kompresji z jakością 90.
+        // 2) ELA: difference after recompressing at quality 90.
         val bmp = ImageIO.decode(file, 2000)
         val baos = ByteArrayOutputStream()
         bmp.compress(Bitmap.CompressFormat.JPEG, 90, baos)
@@ -209,7 +209,7 @@ object AiTools {
         Core.max(ela, ch[2], ela)
         ch.forEach { it.release() }
 
-        // Statystyka bloków 16x16: szukamy obszarów odstających od typowego poziomu błędu.
+        // Statistics of 16x16 blocks: look for areas that deviate from the typical error level.
         val bs = 16
         val bw = ela.cols() / bs
         val bh = ela.rows() / bs
@@ -236,7 +236,7 @@ object AiTools {
             findings += str(R.string.tamper_ela_uniform)
         }
 
-        // Mapa cieplna do podglądu.
+        // Heat map for the preview.
         val vis = Mat()
         Core.normalize(ela, vis, 0.0, 255.0, Core.NORM_MINMAX)
         val amp = Mat()
@@ -257,13 +257,13 @@ object AiTools {
         return TamperReport(heat, score, verdict, findings, editors)
     }
 
-    // ---------------- Liczenie obiektów (CountCam) ----------------
+    // ---------------- Object counting (CountCam) ----------------
 
     data class CountResult(val centers: List<PointF>, val radius: Float)
 
     /**
-     * Liczy podobne obiekty na zdjęciu (rury, monety, tabletki, pręty...).
-     * [sensitivity] 0..1: wyżej = rozdziela bardziej zlepione obiekty.
+     * Counts similar objects in a photo (pipes, coins, pills, rods...).
+     * [sensitivity] 0..1: higher = separates more tightly packed objects.
      */
     fun countObjects(src: Bitmap, sensitivity: Float, darkObjects: Boolean?): CountResult {
         val img = ImageIO.limit(src, 1200)
@@ -277,7 +277,7 @@ object AiTools {
         val bin = Mat()
         Imgproc.threshold(gray, bin, 0.0, 255.0, Imgproc.THRESH_BINARY + Imgproc.THRESH_OTSU)
         val whiteFrac = Core.countNonZero(bin).toDouble() / bin.total()
-        // Obiekty to zwykle mniejszościowa klasa pikseli, chyba że użytkownik wskazał inaczej.
+        // Objects are usually the minority class of pixels, unless the user chose otherwise.
         val invert = when (darkObjects) {
             true -> true
             false -> false
@@ -291,7 +291,7 @@ object AiTools {
         val dist = Mat()
         Imgproc.distanceTransform(bin, dist, Imgproc.DIST_L2, 5)
         val mm = Core.minMaxLoc(dist)
-        // Lokalne maksima odległości = środki obiektów (rozdziela stykające się obiekty).
+        // Local maxima of the distance = object centers (separates touching objects).
         val dil = Mat()
         val r = max(3.0, mm.maxVal * 0.3)
         Imgproc.dilate(dist, dil, Imgproc.getStructuringElement(Imgproc.MORPH_ELLIPSE, Size(r * 2 + 1, r * 2 + 1)))
@@ -318,7 +318,7 @@ object AiTools {
             pts += PointF((cx * scale).toFloat(), (cy * scale).toFloat())
             radii += (d * scale).toFloat()
         }
-        // Usuwamy duplikaty: maksima bliżej niż pół promienia.
+        // Remove duplicates: maxima closer than half a radius.
         val medR = radii.sorted().getOrElse(radii.size / 2) { 10f }
         val result = ArrayList<PointF>()
         for (p in pts) {
@@ -328,13 +328,13 @@ object AiTools {
         return CountResult(result, medR)
     }
 
-    // ---------------- Mega skan (sklejanie kilku zdjęć) ----------------
+    // ---------------- Mega scan (stitching several photos) ----------------
 
     class StitchException(msg: String) : Exception(msg)
 
     /**
-     * Skleja kilka zachodzących na siebie zdjęć dużego dokumentu (plakat, mapa, A3)
-     * w jeden obraz. Zdjęcia muszą być robione kolejno, z ok. 30% zakładki.
+     * Stitches several overlapping photos of a large document (poster, map, A3)
+     * into one image. The photos must be taken in order, with about 30% overlap.
      */
     fun stitch(images: List<Bitmap>, progress: (Int, Int) -> Unit = { _, _ -> }): Bitmap {
         require(images.size >= 2) { str(R.string.stitch_need_two) }
@@ -354,7 +354,7 @@ object AiTools {
             descs += d
             g.release()
         }
-        // Homografie każdego zdjęcia względem pierwszego (łańcuchowo).
+        // Homographies of each photo relative to the first one (chained).
         val toFirst = ArrayList<Mat>()
         toFirst += Mat.eye(3, 3, CvType.CV_64F)
         for (i in 1 until mats.size) {
@@ -379,7 +379,7 @@ object AiTools {
             Core.gemm(toFirst[i - 1], h, 1.0, Mat(), 0.0, total)
             toFirst += total
         }
-        // Rozmiar płótna z narożników po przekształceniu.
+        // Canvas size from the corners after transformation.
         var minX = 0.0
         var minY = 0.0
         var maxX = 0.0
@@ -413,7 +413,7 @@ object AiTools {
             val wm = Mat()
             Imgproc.warpPerspective(mask, wm, t, Size(w.toDouble(), hgt.toDouble()))
             Imgproc.erode(wm, wm, Imgproc.getStructuringElement(Imgproc.MORPH_RECT, Size(3.0, 3.0)))
-            // Nowe zdjęcie wypełnia tylko puste miejsca - bez "duchów" na zakładkach.
+            // A new photo fills only empty spots - no "ghosts" in the overlaps.
             val empty = Mat()
             Core.bitwise_not(filled, empty)
             Core.bitwise_and(wm, empty, wm)
@@ -422,7 +422,7 @@ object AiTools {
             listOf(t, warped, mask, wm, empty).forEach { it.release() }
         }
         progress(mats.size, mats.size)
-        // Przycięcie czarnych brzegów.
+        // Trim black edges.
         val nz = Mat()
         Core.findNonZero(filled, nz)
         val rect = Imgproc.boundingRect(nz)

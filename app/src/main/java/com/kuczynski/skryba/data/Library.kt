@@ -18,8 +18,8 @@ import kotlinx.coroutines.flow.StateFlow
 import org.json.JSONObject
 
 /**
- * Lokalna biblioteka: zeskanowane dokumenty (katalog docs/<id> z meta.json i obrazami stron)
- * oraz zwykłe pliki (PDF, Word, Excel itd.) w katalogu files/. Wszystko offline, w pamięci aplikacji.
+ * Local library: scanned documents (docs/<id> directory with meta.json and page images)
+ * and regular files (PDF, Word, Excel etc.) in the files/ directory. All offline, in app storage.
  */
 object Library {
     private lateinit var root: File
@@ -80,7 +80,7 @@ object Library {
         cleanupDocDir(d)
     }
 
-    /** Usuwa pliki obrazów, do których nie odwołuje się już żadna strona. */
+    /** Deletes image files no longer referenced by any page. */
     private fun cleanupDocDir(doc: ScanDocument) {
         val used = HashSet<String>()
         doc.pages.forEach { p ->
@@ -111,9 +111,9 @@ object Library {
         return copy
     }
 
-    // ---------- Pliki ----------
+    // ---------- Files ----------
 
-    /** Zwraca wolną nazwę pliku w katalogu files/, np. "Raport (2).pdf". */
+    /** Returns a free file name in the files/ directory, e.g. "Report (2).pdf". */
     fun uniqueFile(name: String): File {
         val clean = sanitize(name)
         var f = File(filesDir, clean)
@@ -191,7 +191,7 @@ object Library {
         tempDir.listFiles()?.forEach { it.deleteRecursively() }
     }
 
-    // ---------- Kopia zapasowa (offline, plik ZIP) ----------
+    // ---------- Backup (offline, ZIP file) ----------
 
     fun exportBackup(out: java.io.OutputStream) {
         ZipOutputStream(out.buffered()).use { zip ->
@@ -205,7 +205,7 @@ object Library {
         }
     }
 
-    /** Przywraca kopię. Istniejące dokumenty o tym samym id zostają nadpisane, reszta zostaje. */
+    /** Restores a backup. Existing documents with the same id are overwritten, the rest stay. */
     fun importBackup(input: java.io.InputStream): Int {
         var count = 0
         val canonicalRoot = root.canonicalPath + File.separator
@@ -213,7 +213,7 @@ object Library {
             while (true) {
                 val e = zip.nextEntry ?: break
                 val target = File(root, e.name)
-                // Ochrona przed "zip slip" (ścieżki wychodzące poza katalog biblioteki).
+                // Protection against "zip slip" (paths escaping the library directory).
                 if (!target.canonicalPath.startsWith(canonicalRoot)) continue
                 if (e.isDirectory) {
                     target.mkdirs()

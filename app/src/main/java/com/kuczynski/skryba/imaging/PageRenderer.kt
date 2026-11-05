@@ -11,7 +11,7 @@ import com.kuczynski.skryba.data.Overlay
 import com.kuczynski.skryba.data.Page
 import java.io.File
 
-/** Składa gotową stronę: oryginał -> prostowanie -> filtr -> obrót -> nakładki (podpisy). */
+/** Builds the final page: original -> straightening -> filter -> rotation -> overlays (signatures). */
 object PageRenderer {
 
     const val MAX_SIDE = 3200
@@ -49,7 +49,7 @@ object PageRenderer {
         return out
     }
 
-    /** Przelicza stronę dokumentu i zapisuje nowy plik (nowa nazwa = brak problemów z cache miniatur). */
+    /** Recomputes a document page and writes a new file (a new name avoids thumbnail cache problems). */
     fun reprocess(docId: String, page: Page, quality: Int): Page {
         val original = Library.pageFile(docId, page.original)
         val bmp = render(original, page.quad, page.filter, page.rotation, page.overlays)

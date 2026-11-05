@@ -92,10 +92,10 @@ import kotlin.math.roundToInt
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-/** Normalizowany prostokąt podpisu na stronie (lewy górny róg + rozmiar, 0..1). */
+/** Normalized signature rectangle on the page (top left corner + size, 0..1). */
 data class NRect(val x: Float, val y: Float, val w: Float, val h: Float)
 
-// ---------------- Rysowanie nowego podpisu ----------------
+// ---------------- Drawing a new signature ----------------
 
 @Composable
 fun SignaturePadDialog(onDismiss: () -> Unit, onSaved: (File) -> Unit) {
@@ -167,7 +167,7 @@ fun SignaturePadDialog(onDismiss: () -> Unit, onSaved: (File) -> Unit) {
     }
 }
 
-/** Zapisuje podpis jako przezroczysty PNG przycięty do narysowanych linii (2x rozdzielczość). */
+/** Saves the signature as a transparent PNG cropped to the drawn lines (2x resolution). */
 private fun saveSignature(strokes: List<List<Offset>>, w: Int, h: Int, color: Int, width: Float): File? {
     if (strokes.isEmpty() || w <= 0 || h <= 0) return null
     val scale = 2f
@@ -207,7 +207,7 @@ private fun saveSignature(strokes: List<List<Offset>>, w: Int, h: Int, color: In
     return f
 }
 
-// ---------------- Wybór zapisanego podpisu ----------------
+// ---------------- Choosing a saved signature ----------------
 
 @Composable
 fun SignatureStrip(selected: File?, onSelect: (File) -> Unit) {
@@ -265,9 +265,9 @@ fun SignatureStrip(selected: File?, onSelect: (File) -> Unit) {
 fun listSignatures(): List<File> =
     Library.signaturesDir.listFiles().orEmpty().filter { it.name.startsWith("sig_") }.sortedByDescending { it.lastModified() }
 
-// ---------------- Umieszczanie podpisu na stronie ----------------
+// ---------------- Placing the signature on a page ----------------
 
-/** Tło (strona) z podpisem, który można przesuwać jednym palcem i skalować dwoma. */
+/** Background (page) with a signature that can be moved with one finger and scaled with two. */
 @Composable
 fun SignaturePlacer(page: ImageBitmap, signature: ImageBitmap?, rect: NRect, onRect: (NRect) -> Unit, modifier: Modifier = Modifier) {
     BoxWithConstraints(modifier, contentAlignment = Alignment.Center) {
@@ -279,7 +279,7 @@ fun SignaturePlacer(page: ImageBitmap, signature: ImageBitmap?, rect: NRect, onR
         val dh = page.height * s
         val left = (cw - dw) / 2
         val top = (ch - dh) / 2
-        // Aktualny prostokąt bez restartowania obsługi gestu przy każdej zmianie.
+        // Current rectangle without restarting the gesture handler on every change.
         val currentRect by rememberUpdatedState(rect)
         val update by rememberUpdatedState(onRect)
         Box(Modifier.fillMaxSize()) {
@@ -310,14 +310,14 @@ fun SignaturePlacer(page: ImageBitmap, signature: ImageBitmap?, rect: NRect, onR
     }
 }
 
-/** Startowe położenie podpisu: prawa dolna część strony, zachowane proporcje. */
+/** Initial signature position: lower right part of the page, aspect ratio kept. */
 fun initialRect(page: ImageBitmap, sig: ImageBitmap): NRect {
     val w = 0.35f
     val h = w * page.width / page.height * sig.height / sig.width
     return NRect(0.58f, (0.82f - h).coerceAtLeast(0f), w, h)
 }
 
-// ---------------- Ekran: podpis na stronie dokumentu ----------------
+// ---------------- Screen: signature on a document page ----------------
 
 @Composable
 fun SignPageScreen(nav: NavController, docId: String, pageId: String) {
@@ -365,7 +365,7 @@ fun SignPageScreen(nav: NavController, docId: String, pageId: String) {
                         runner.run(str(R.string.inserting_signature), onDone = { _: Unit -> nav.popBackStack() }) {
                             val current = Library.get(docId) ?: return@run
                             val target = current.pages.first { it.id == pageId }
-                            // Podpis zapisujemy jako nakładkę - zostaje po zmianie filtra czy przycięcia.
+                            // Save the signature as an overlay - it stays after changing the filter or cropping.
                             val updated = PageRenderer.reprocess(
                                 docId,
                                 target.copy(overlays = target.overlays + Overlay(f.name, r.x, r.y, r.w, r.h)),

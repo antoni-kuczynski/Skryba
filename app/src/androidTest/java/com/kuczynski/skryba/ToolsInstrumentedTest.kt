@@ -35,7 +35,7 @@ import java.io.ByteArrayOutputStream
 import java.io.File
 import java.util.zip.ZipFile
 
-/** Sprawdza narzędzia na prawdziwym Androidzie (OpenCV, Tesseract, PdfBox, PdfRenderer). */
+/** Checks the tools on a real Android device (OpenCV, Tesseract, PdfBox, PdfRenderer). */
 @RunWith(AndroidJUnit4::class)
 class ToolsInstrumentedTest {
 
@@ -145,7 +145,7 @@ class ToolsInstrumentedTest {
 
     @Test
     fun imaging() {
-        // Biała kartka pod kątem na ciemnym tle.
+        // A white sheet at an angle on a dark background.
         val photo = Bitmap.createBitmap(900, 1200, Bitmap.Config.ARGB_8888)
         val c = Canvas(photo)
         c.drawColor(Color.rgb(60, 40, 30))
@@ -165,7 +165,7 @@ class ToolsInstrumentedTest {
 
     @Test
     fun aiTools() {
-        // 7 ciemnych kółek na jasnym tle.
+        // 7 dark circles on a light background.
         val b = Bitmap.createBitmap(800, 600, Bitmap.Config.ARGB_8888)
         val c = Canvas(b)
         c.drawColor(Color.rgb(230, 230, 220))
@@ -182,7 +182,7 @@ class ToolsInstrumentedTest {
         val report = AiTools.analyzeTampering(f)
         assertTrue(report.score in 0..100)
 
-        // Dwa zachodzące fragmenty tekstury -> sklejenie.
+        // Two overlapping texture fragments -> stitching.
         val tex = Bitmap.createBitmap(1200, 800, Bitmap.Config.ARGB_8888)
         val tc = Canvas(tex)
         tc.drawColor(Color.WHITE)

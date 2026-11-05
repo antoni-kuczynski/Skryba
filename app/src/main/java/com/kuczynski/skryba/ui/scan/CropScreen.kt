@@ -68,7 +68,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-/** Przycinanie strony z bieżącej sesji skanowania. */
+/** Cropping a page from the current scan session. */
 @Composable
 fun CropScreen(nav: NavController, pageId: String) {
     val page = ScanSession.find(pageId)
@@ -92,7 +92,7 @@ fun CropScreen(nav: NavController, pageId: String) {
     }
 }
 
-/** Ponowne przycięcie strony zapisanego dokumentu (z oryginalnego zdjęcia). */
+/** Re-cropping a page of a saved document (from the original photo). */
 @Composable
 fun PageCropScreen(nav: NavController, docId: String, pageId: String) {
     val doc = Library.get(docId)
@@ -180,8 +180,8 @@ private fun CropContent(
 }
 
 /**
- * Edytor czworokąta: narożniki i środki boków można przeciągać.
- * Podczas przeciągania lupa pokazuje powiększony fragment pod palcem.
+ * Quadrilateral editor: corners and edge midpoints can be dragged.
+ * While dragging, a magnifier shows an enlarged fragment under the finger.
  */
 @Composable
 fun QuadEditor(bitmap: ImageBitmap, quad: FloatArray, onChange: (FloatArray) -> Unit, modifier: Modifier = Modifier) {
@@ -214,7 +214,7 @@ fun QuadEditor(bitmap: ImageBitmap, quad: FloatArray, onChange: (FloatArray) -> 
                         var bestD = touchR
                         for (i in 0 until 8) {
                             val d = (handle(current, i) - pos).getDistance()
-                            // Narożniki mają pierwszeństwo przed środkami boków.
+                            // Corners take precedence over edge midpoints.
                             val score = if (i < 4) d * 0.8f else d
                             if (score < bestD) { bestD = score; best = i }
                         }
@@ -253,7 +253,7 @@ fun QuadEditor(bitmap: ImageBitmap, quad: FloatArray, onChange: (FloatArray) -> 
                 drawCircle(Color.White, r, p)
                 drawCircle(Brand, r, p, style = Stroke(width = 2.5.dp.toPx()))
             }
-            // Lupa
+            // Magnifier
             val a = active
             if (a >= 0) {
                 val p = handle(quad, a)

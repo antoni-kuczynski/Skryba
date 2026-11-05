@@ -46,7 +46,7 @@ enum class ToolGroup(private val titleRes: Int) {
     val title: String get() = str(titleRes)
 }
 
-/** Rodzaj plików wejściowych narzędzia. */
+/** Kind of input files for a tool. */
 enum class InputKind(val mimes: Array<String>, val extensions: Set<String>, private val name0: String) {
     PDF(arrayOf("application/pdf"), setOf("pdf"), "PDF"),
     IMAGES(arrayOf("image/*"), setOf("jpg", "jpeg", "png", "webp"), ""),
@@ -117,7 +117,7 @@ enum class Tool(
     val subtitle: String get() = str(subtitleRes)
 }
 
-/** Dane przekazywane między ekranami (zbyt duże albo nieserializowalne do trasy nawigacji). */
+/** Data passed between screens (too large or not serializable into a navigation route). */
 object Handoff {
     data class PdfInput(val file: File, val password: String?, val label: String)
 
@@ -172,5 +172,5 @@ fun NavController.viewFile(f: File) {
     navigate(Routes.VIEW)
 }
 
-/** Sprawdza czy PDF wymaga hasła (bez rzucania wyjątków przy uszkodzonych plikach). */
+/** Checks whether a PDF needs a password (without throwing exceptions for damaged files). */
 fun pdfNeedsPassword(f: File): Boolean = runCatching { PdfTools.needsPassword(f) }.getOrDefault(false)

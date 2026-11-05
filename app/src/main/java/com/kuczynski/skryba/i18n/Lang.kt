@@ -9,9 +9,9 @@ import androidx.annotation.StringRes
 import java.util.Locale
 
 /**
- * Język aplikacji: "" = jak w telefonie, albo kod języka (pl, en, de, fr, pt).
- * Na Androidzie 13+ korzystamy z systemowego języka per aplikacja (LocaleManager),
- * na starszych podmieniamy konfigurację kontekstu.
+ * App language: "" = same as the phone, or a language code (pl, en, de, fr, pt).
+ * On Android 13+ we use the per-app system language (LocaleManager),
+ * on older versions we replace the context configuration.
  */
 object Lang {
     private const val PREFS = "settings"
@@ -20,7 +20,7 @@ object Lang {
     @Volatile
     private var ctx: Context? = null
 
-    /** Kontekst, z którego czytane są teksty (aktywność, a bez niej aplikacja). */
+    /** Context that strings are read from (the activity, or the application without one). */
     fun attach(context: Context) {
         ctx = context
     }
@@ -46,7 +46,7 @@ object Lang {
         }
     }
 
-    /** Dla Androida < 13: kontekst z wybranym językiem (wywoływane w attachBaseContext). */
+    /** For Android < 13: context with the chosen language (called in attachBaseContext). */
     fun wrap(base: Context): Context {
         if (Build.VERSION.SDK_INT >= 33) return base
         val tag = saved(base)
@@ -58,7 +58,7 @@ object Lang {
         return base.createConfigurationContext(conf)
     }
 
-    /** Czy interfejs jest po polsku (do tekstów generowanych w kodzie, np. nazw języków OCR). */
+    /** Whether the UI is in Polish (for texts generated in code, e.g. OCR language names). */
     val isPolish: Boolean
         get() = context().resources.configuration.locales[0].language == "pl"
 }

@@ -7,8 +7,8 @@ import kotlin.math.max
 import kotlin.math.min
 
 /**
- * Analiza układu tekstu ze słów z położeniem (z PDF albo z OCR):
- * linie, akapity, nagłówki i tabele. Czysty Kotlin, testowalny bez Androida.
+ * Text layout analysis from words with positions (from PDF or OCR):
+ * lines, paragraphs, headings and tables. Pure Kotlin, testable without Android.
  */
 object TextLayout {
 
@@ -35,7 +35,7 @@ object TextLayout {
         for (w in sorted) {
             val c = w.y + w.h / 2
             var idx = -1
-            // Szukamy wśród ostatnich linii (słowa są posortowane po wysokości).
+            // Search among the last lines (words are sorted by height).
             for (i in lines.indices.reversed().take(4)) {
                 if (abs(centers[i] - c) < 0.5f * max(heights[i], w.h)) { idx = i; break }
             }
@@ -104,7 +104,7 @@ object TextLayout {
         return out
     }
 
-    /** Odtwarza tabelę: komórki rozdzielone dużymi odstępami, kolumny dopasowane po pozycji x. */
+    /** Rebuilds a table: cells separated by large gaps, columns matched by x position. */
     fun table(page: PageWords): List<List<String>> {
         val lines = groupLines(page.words)
         if (lines.isEmpty()) return emptyList()
@@ -130,9 +130,9 @@ object TextLayout {
             cells += Cell(start.x, right, sb.toString())
             cells
         }
-        // Liczba kolumn = najczęstsza liczba komórek w wierszu (wśród wierszy z co najmniej 2 komórkami).
-        // Położenie kolumn = mediany z "pełnych" wierszy. Dzięki temu nagłówek wyrównany do lewej
-        // i liczby wyrównane do prawej trafiają do tej samej kolumny.
+        // Number of columns = most common number of cells in a row (among rows with at least 2 cells).
+        // Column positions = medians from "full" rows. This way a left-aligned header
+        // and right-aligned numbers end up in the same column.
         val multi = rows.filter { it.size >= 2 }
         val k = multi.groupingBy { it.size }.eachCount().entries
             .maxWithOrNull(compareBy<Map.Entry<Int, Int>> { it.value }.thenBy { it.key })?.key ?: 1
@@ -149,7 +149,7 @@ object TextLayout {
                     var best = 0
                     var bestScore = -Float.MAX_VALUE
                     cols.forEachIndexed { i, col ->
-                        // Największa część wspólna, a przy jej braku najmniejsza odległość.
+                        // Largest overlap, or the smallest distance if there is none.
                         val overlap = min(c.right, col[1]) - max(c.x, col[0])
                         if (overlap > bestScore) { bestScore = overlap; best = i }
                     }
@@ -167,7 +167,7 @@ object TextLayout {
         return rows.map { r -> keep.map { r.getOrElse(it) { "" } } }
     }
 
-    /** Akapity z gołego tekstu (gdy nie ma pozycji słów). */
+    /** Paragraphs from plain text (when there are no word positions). */
     fun paragraphsFromText(text: String): List<String> {
         val lines = text.replace("\r", "").split('\n')
         val maxLen = lines.maxOfOrNull { it.trim().length } ?: 0

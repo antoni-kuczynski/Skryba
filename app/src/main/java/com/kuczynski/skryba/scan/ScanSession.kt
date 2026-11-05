@@ -21,21 +21,21 @@ import com.kuczynski.skryba.imaging.ImageIO
 import com.kuczynski.skryba.imaging.PageRenderer
 import java.io.File
 
-/** Strona w trakcie skanowania (przed zapisaniem do dokumentu). */
+/** A page being scanned (before it is saved to a document). */
 class SessionPage(val id: String, val file: File, quad: FloatArray?, filter: FilterType) {
     var quad by mutableStateOf(quad)
     var filter by mutableStateOf(filter)
     var rotation by mutableStateOf(0)
 }
 
-/** Bieżąca sesja skanowania: zdjęcia zrobione aparatem lub zaimportowane z galerii. */
+/** Current scan session: photos taken with the camera or imported from the gallery. */
 object ScanSession {
     var mode by mutableStateOf(ScanMode.DOCUMENT)
     var targetDocId: String? = null
     var splitBook by mutableStateOf(true)
     val pages = mutableStateListOf<SessionPage>()
 
-    /** Podglądy w niższej rozdzielczości, klucz = id strony + parametry. */
+    /** Lower resolution previews, key = page id + parameters. */
     val previews = HashMap<String, Bitmap>()
 
     fun start(mode: ScanMode, targetDocId: String? = null) {
@@ -49,7 +49,7 @@ object ScanSession {
 
     fun find(id: String) = pages.firstOrNull { it.id == id }
 
-    /** Normalizuje zdjęcie (obrót z EXIF, rozmiar), wykrywa krawędzie kartki i dodaje stronę. */
+    /** Normalizes the photo (EXIF rotation, size), detects the sheet edges and adds a page. */
     fun addCapture(raw: File): SessionPage {
         val bmp = ImageIO.decode(raw, 4000)
         val file = File(Library.sessionDir, "s_${Library.newId()}.jpg")
@@ -93,7 +93,7 @@ object ScanSession {
         else -> mode.label
     }
 
-    /** Zapisuje sesję jako nowy dokument albo dopisuje strony do istniejącego. */
+    /** Saves the session as a new document or appends pages to an existing one. */
     fun save(progress: (Int, Int) -> Unit): ScanDocument {
         val existing = targetDocId?.let { Library.get(it) }
         val docId = existing?.id ?: Library.newId()

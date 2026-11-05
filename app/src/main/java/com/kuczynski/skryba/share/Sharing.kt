@@ -17,7 +17,7 @@ import com.kuczynski.skryba.R
 import com.kuczynski.skryba.i18n.str
 import java.io.File
 
-/** Udostępnianie przez systemowy arkusz (e-mail, WhatsApp, Bluetooth...) i otwieranie w innych aplikacjach. */
+/** Sharing through the system sheet (e-mail, WhatsApp, Bluetooth...) and opening in other apps. */
 object Sharing {
 
     fun uri(context: Context, file: File): Uri =

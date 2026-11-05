@@ -13,10 +13,10 @@ import java.io.File
 
 data class OcrWord(val text: String, val box: Rect, val confidence: Float)
 
-/** Rozpoznawanie tekstu offline (Tesseract). Modele językowe są w assets/tessdata. */
+/** Offline text recognition (Tesseract). Language models are in assets/tessdata. */
 object OcrEngine {
 
-    /** Kod Tesseract, nazwa polska, nazwa angielska. */
+    /** Tesseract code, Polish name, English name. */
     val LANGUAGES: List<Triple<String, String, String>> = listOf(
         Triple("pol", "Polski", "Polish"), Triple("eng", "Angielski", "English"),
         Triple("deu", "Niemiecki", "German"), Triple("fra", "Francuski", "French"),
@@ -52,14 +52,14 @@ object OcrEngine {
 
     fun tessdataDir(context: Context) = File(dataRoot(context), "tessdata")
 
-    /** Wszystkie dostępne języki: wbudowane i zaimportowane przez użytkownika. */
+    /** All available languages: built in and imported by the user. */
     fun availableLanguages(context: Context): List<String> {
         val bundled = context.assets.list("tessdata").orEmpty().map { it.removeSuffix(".traineddata") }
         val imported = tessdataDir(context).listFiles().orEmpty().map { it.name.removeSuffix(".traineddata") }
         return (LANGUAGES.map { it.first }.filter { it in bundled } + (bundled + imported).sorted()).distinct()
     }
 
-    /** Kopiuje model z assets do katalogu, z którego czyta Tesseract (tylko przy pierwszym użyciu). */
+    /** Copies the model from assets to the directory Tesseract reads from (only on first use). */
     private fun ensureLang(context: Context, code: String): Boolean {
         val target = File(tessdataDir(context), "$code.traineddata")
         if (target.exists() && target.length() > 0) return true
@@ -103,7 +103,7 @@ object OcrEngine {
         return cleanup(text)
     }
 
-    /** Słowa z położeniem (w pikselach obrazu wejściowego) - do warstwy tekstu w PDF i do tabel. */
+    /** Words with positions (in pixels of the input image) - for the PDF text layer and for tables. */
     @Synchronized
     fun recognizeWords(context: Context, bmp: Bitmap, langs: List<String> = Settings.value.ocrLangs): List<OcrWord> {
         val a = engine(context, langs)
@@ -134,7 +134,7 @@ object OcrEngine {
         return words
     }
 
-    /** Skleja słowa przeniesione z myślnikiem i usuwa nadmiarowe puste linie. */
+    /** Joins words split with a hyphen and removes redundant empty lines. */
     fun cleanup(text: String): String = text
         .replace("\r", "")
         .replace(Regex("(\\p{L})-\\n(\\p{Ll})"), "$1$2")

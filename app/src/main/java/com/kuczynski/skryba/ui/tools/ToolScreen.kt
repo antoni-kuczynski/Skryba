@@ -102,7 +102,7 @@ fun ToolScreen(nav: NavController, tool: Tool) {
     var libraryPicker by remember { mutableStateOf(false) }
     var askPassword by remember { mutableStateOf<Handoff.PdfInput?>(null) }
 
-    // Opcje narzędzi
+    // Tool options
     var outName by remember { mutableStateOf("") }
     var splitEach by remember { mutableStateOf(true) }
     var ranges by remember { mutableStateOf("") }
@@ -283,7 +283,7 @@ fun ToolScreen(nav: NavController, tool: Tool) {
                 TextButton(onClick = { pickFromDevice() }) { Text(str(R.string.change_file)) }
             }
 
-            // ---- Opcje ----
+            // ---- Options ----
             when (tool) {
                 Tool.MERGE, Tool.JPG_TO_PDF -> if (inputs.isNotEmpty()) {
                     OutlinedTextField(outName, { outName = it }, label = { Text(str(R.string.output_name)) }, singleLine = true, modifier = Modifier.fillMaxWidth())
@@ -387,7 +387,7 @@ private fun PasswordField(value: String, onChange: (String) -> Unit, label: Stri
     )
 }
 
-/** "1-3, 5, 7-9" -> zakresy indeksów od 0. */
+/** "1-3, 5, 7-9" -> index ranges counted from 0. */
 fun parseRanges(text: String, count: Int): List<IntRange> = text.split(',', ';', ' ')
     .map { it.trim() }.filter { it.isNotEmpty() }
     .mapNotNull { part ->
@@ -402,7 +402,7 @@ fun parseRanges(text: String, count: Int): List<IntRange> = text.split(',', ';',
     .map { r -> r.first.coerceIn(0, count - 1)..r.last.coerceIn(0, count - 1) }
     .filter { it.first <= it.last }
 
-/** Kopiuje pliki wybrane w systemowym selektorze do katalogu tymczasowego. */
+/** Copies files picked in the system picker to the temp directory. */
 fun importUris(context: Context, uris: List<Uri>, runner: com.kuczynski.skryba.ui.common.TaskRunner, onDone: (List<Pair<File, String>>) -> Unit) {
     if (uris.isEmpty()) return
     runner.run(str(R.string.loading), onDone = onDone) { p ->
@@ -415,7 +415,7 @@ fun importUris(context: Context, uris: List<Uri>, runner: com.kuczynski.skryba.u
     }
 }
 
-/** Wybór pliku z biblioteki aplikacji (zeskanowane dokumenty i pliki). */
+/** Picking a file from the app library (scanned documents and files). */
 @Composable
 fun LibraryPicker(kind: InputKind, onDismiss: () -> Unit, onDoc: (ScanDocument) -> Unit, onFile: (File) -> Unit) {
     val allDocs by Library.docs.collectAsState()

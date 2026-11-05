@@ -156,7 +156,7 @@ fun DocumentScreen(nav: NavController, docId: String) {
 
     fun exportWord() {
         runner.run(str(R.string.creating_word), onDone = { f: File -> result = listOf(f) }) { p ->
-            // Najpierw OCR stron, których jeszcze nie rozpoznano.
+            // OCR the pages that have not been recognized yet first.
             val d = DocActions.ocr(context, doc, doc.pages.indices.toList(), force = false) { a, b -> p(a, b + 1) }
             val blocks = ArrayList<DocxBlock>()
             d.pages.forEachIndexed { i, page ->
@@ -165,7 +165,7 @@ fun DocumentScreen(nav: NavController, docId: String) {
                 if (paras.isNotEmpty()) {
                     paras.forEach { blocks += DocxBlock.Paragraph(it) }
                 } else {
-                    // Strona bez tekstu (np. zdjęcie) trafia do dokumentu jako obraz.
+                    // A page without text (e.g. a photo) goes into the document as an image.
                     val bmp = ImageIO.decode(Library.pageFile(d.id, page.processed), 1600)
                     val jpeg = ByteArrayOutputStream().also { bmp.compress(android.graphics.Bitmap.CompressFormat.JPEG, 80, it) }.toByteArray()
                     blocks += DocxBlock.Image(jpeg, bmp.width, bmp.height)

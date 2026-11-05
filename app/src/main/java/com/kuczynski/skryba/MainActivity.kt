@@ -50,7 +50,7 @@ import kotlinx.coroutines.withContext
 
 class MainActivity : ComponentActivity() {
 
-    /** Plik lub obrazy przekazane z innej aplikacji (Udostępnij / Otwórz w). */
+    /** File or images passed from another app (Share / Open with). */
     private val incoming = mutableStateOf<Intent?>(null)
 
     override fun attachBaseContext(newBase: Context) {
@@ -59,7 +59,7 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Teksty czytamy z kontekstu aktywności - ma aktualny język interfejsu.
+        // Strings are read from the activity context - it has the current UI language.
         Lang.attach(this)
         enableEdgeToEdge()
         if (savedInstanceState == null) incoming.value = intent
@@ -80,7 +80,7 @@ private fun AppNav(incoming: Intent?, consumed: () -> Unit) {
 
     LaunchedEffect(incoming) {
         val intent = incoming ?: return@LaunchedEffect
-        // consumed() zmienia klucz efektu i anulowałby go, więc praca idzie w osobnym zakresie.
+        // consumed() changes the effect key and would cancel it, so the work runs in a separate scope.
         consumed()
         scope.launch { handleIncoming(intent, nav) }
     }
@@ -118,7 +118,7 @@ private fun AppNav(incoming: Intent?, consumed: () -> Unit) {
     }
 }
 
-/** Plik lub zdjęcia przekazane przez "Udostępnij" / "Otwórz w" z innej aplikacji. */
+/** File or photos passed through "Share" / "Open with" from another app. */
 private suspend fun handleIncoming(intent: Intent, nav: NavHostController) {
     val ctx = Library.appContext
     val uris: List<Uri> = when (intent.action) {
@@ -130,7 +130,7 @@ private suspend fun handleIncoming(intent: Intent, nav: NavHostController) {
     if (uris.isEmpty()) return
     val type = intent.type ?: ctx.contentResolver.getType(uris[0]) ?: ""
     if (type.startsWith("image/")) {
-        // Zdjęcia z innej aplikacji trafiają do nowego skanu.
+        // Photos from another app go into a new scan.
         ScanSession.start(ScanMode.DOCUMENT)
         withContext(Dispatchers.Default) { uris.forEach { runCatching { ScanSession.addFromUri(ctx, it) }.onFailure { e -> e.printStackTrace() } } }
         if (ScanSession.pages.isNotEmpty()) nav.navigate(Routes.REVIEW)

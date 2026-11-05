@@ -93,7 +93,7 @@ class OoxmlTest {
 
     @Test
     fun tableWithOverlappingColumns() {
-        // Nagłówek wyrównany do lewej zachodzi na liczby wyrównane do prawej.
+        // A left-aligned header overlaps right-aligned numbers.
         fun w(t: String, x: Int, wd: Int, y: Int) = WordBox(t, x.toFloat(), y.toFloat(), wd.toFloat(), 10f)
         val words = listOf(
             w("Faktura", 49, 66, 50), w("numer", 124, 58, 50), w("15", 190, 21, 50),

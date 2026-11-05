@@ -22,7 +22,7 @@ android {
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-            // Podpisane kluczem debug, żeby dało się zainstalować bez osobnego keystore.
+            // Signed with the debug key so it can be installed without a separate keystore.
             signingConfig = signingConfigs.getByName("debug")
         }
     }
@@ -33,7 +33,6 @@ android {
     buildFeatures {
         compose = true
     }
-    // Osobny APK dla każdej architektury (telefon zwykle potrzebuje arm64-v8a).
     splits {
         abi {
             isEnable = true
@@ -46,7 +45,7 @@ android {
         resources {
             excludes += listOf(
                 "META-INF/DEPENDENCIES", "META-INF/LICENSE*", "META-INF/NOTICE*",
-                // Dane kryptografii postkwantowej z bouncycastle - PdfBox ich nie używa.
+                // Post-quantum cryptography data from bouncycastle - PdfBox does not use it.
                 "org/bouncycastle/pqc/**",
             )
         }
@@ -54,6 +53,10 @@ android {
             useLegacyPackaging = false
         }
     }
+}
+
+base {
+    archivesName.set("skryba")
 }
 
 dependencies {

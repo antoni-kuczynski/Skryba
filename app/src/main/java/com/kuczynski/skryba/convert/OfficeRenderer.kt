@@ -24,7 +24,7 @@ import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.roundToInt
 
-/** Rysuje model dokumentu Office do PDF (systemowy PdfDocument, tekst wektorowy). */
+/** Draws the Office document model to PDF (system PdfDocument, vector text). */
 object OfficeRenderer {
 
     private fun headingSize(level: Int): Float? = when (level) {
@@ -70,7 +70,7 @@ object OfficeRenderer {
                 sb.setSpan(ForegroundColorSpan(r.style.color ?: defaultColor), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
             }
             if (sb.length == pStart) {
-                // Pusty akapit: zachowujemy wysokość linii.
+                // Empty paragraph: keep the line height.
                 sb.append(" ")
                 val size = ((p.runs.firstOrNull()?.style?.sizePt ?: defaultSize) * scale).roundToInt().coerceAtLeast(1)
                 sb.setSpan(AbsoluteSizeSpan(size), pStart, sb.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
@@ -85,7 +85,7 @@ object OfficeRenderer {
         return sb
     }
 
-    // Layout.JUSTIFICATION_MODE_* ma te same wartosci co LineBreaker.* (API 29), a setJustificationMode jest od API 26.
+    // Layout.JUSTIFICATION_MODE_* has the same values as LineBreaker.* (API 29), and setJustificationMode exists since API 26.
     @android.annotation.SuppressLint("WrongConstant")
     private fun layout(text: CharSequence, width: Int, justify: Boolean = false, baseSize: Float = 11f): StaticLayout {
         val paint = TextPaint(Paint.ANTI_ALIAS_FLAG).apply {
@@ -100,7 +100,7 @@ object OfficeRenderer {
             .build()
     }
 
-    /** Zarządza kolejnymi stronami PdfDocument i pozycją kursora w pionie. */
+    /** Manages consecutive PdfDocument pages and the vertical cursor position. */
     private class Pager(
         val pdf: PdfDocument,
         var pageW: Float,
@@ -130,7 +130,7 @@ object OfficeRenderer {
             page = null
         }
 
-        /** Rysuje układ tekstu, dzieląc go między strony w miejscach przejścia linii. */
+        /** Draws the text layout, splitting it between pages at line breaks. */
         fun drawLayout(l: StaticLayout, x: Float) {
             ensure()
             var line = 0
@@ -143,7 +143,7 @@ object OfficeRenderer {
                         newPage()
                         continue
                     }
-                    last = line // Linia wyższa niż strona - rysujemy i tak.
+                    last = line // Line taller than the page - draw it anyway.
                 }
                 val top = l.getLineTop(line).toFloat()
                 val h = l.getLineBottom(last) - top
@@ -159,7 +159,7 @@ object OfficeRenderer {
         }
     }
 
-    // ---------------- Dokument (Word, TXT) ----------------
+    // ---------------- Document (Word, TXT) ----------------
 
     fun renderFlow(doc: FlowDocument, out: File) {
         val pdf = PdfDocument()
@@ -173,7 +173,7 @@ object OfficeRenderer {
                         val p = b.para
                         if (p.heading in 1..2 && pg.y > pg.mt) pg.y += 6f
                         val l = layout(spannable(listOf(p), doc.defaultSizePt), (pg.contentW - p.indentPt).roundToInt(), p.align == Align.JUSTIFY, doc.defaultSizePt)
-                        // Nagłówek nie powinien zostać sam na dole strony.
+                        // A heading should not be left alone at the bottom of a page.
                         if (p.heading > 0 && pg.y + l.height + 30f > pg.bottom && pg.y > pg.mt) pg.newPage()
                         pg.drawLayout(l, pg.ml + p.indentPt)
                         pg.y += min(p.spaceAfterPt, 24f)
@@ -242,7 +242,7 @@ object OfficeRenderer {
         renderFlow(FlowDocument(blocks = paras.map { FlowBlock.P(it) }), out)
     }
 
-    // ---------------- Arkusze (Excel) ----------------
+    // ---------------- Spreadsheets (Excel) ----------------
 
     fun renderSheets(sheets: List<SheetData>, out: File) {
         val pdf = PdfDocument()
@@ -319,7 +319,7 @@ object OfficeRenderer {
         }
     }
 
-    // ---------------- Prezentacje (PowerPoint) ----------------
+    // ---------------- Presentations (PowerPoint) ----------------
 
     fun renderPresentation(p: Presentation, out: File) {
         val pdf = PdfDocument()
@@ -350,7 +350,7 @@ object OfficeRenderer {
                         val innerH = s.h - 7.2f
                         var scale = 1f
                         var l = layout(spannable(s.paragraphs, 18f, scale, color), innerW)
-                        // Automatyczne zmniejszanie tekstu, gdy nie mieści się w ramce.
+                        // Automatically shrink text when it does not fit in the frame.
                         var tries = 0
                         while (l.height > innerH && tries < 6 && innerH > 10) {
                             scale *= 0.88f

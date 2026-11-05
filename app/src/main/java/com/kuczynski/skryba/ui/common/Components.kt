@@ -98,7 +98,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-// ---------------- Zadania w tle z okienkiem postępu ----------------
+// ---------------- Background tasks with a progress dialog ----------------
 
 class TaskRunner(private val scope: CoroutineScope, private val context: Context) {
     var label by mutableStateOf<String?>(null)
@@ -180,7 +180,7 @@ fun toast(context: Context, msg: String) {
     }
 }
 
-// ---------------- Paski i drobne elementy ----------------
+// ---------------- Bars and small elements ----------------
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -252,7 +252,7 @@ fun fileIcon(f: File): ImageVector = when (f.extension.lowercase()) {
     else -> Icons.AutoMirrored.Filled.InsertDriveFile
 }
 
-// ---------------- Okna dialogowe ----------------
+// ---------------- Dialogs ----------------
 
 @Composable
 fun TextInputDialog(
@@ -303,7 +303,7 @@ fun ConfirmDialog(title: String, text: String, confirm: String, onDismiss: () ->
     )
 }
 
-// ---------------- Wynik operacji: co zrobić z nowym plikiem ----------------
+// ---------------- Operation result: what to do with the new file ----------------
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -391,11 +391,11 @@ fun saveToTree(context: Context, tree: Uri, files: List<File>) {
     }
 }
 
-// ---------------- Podgląd z powiększaniem ----------------
+// ---------------- Preview with zoom ----------------
 
 /**
- * Obraz z powiększaniem dwoma palcami i podwójnym stuknięciem. Przy skali 1 przepuszcza
- * przeciąganie jednym palcem dalej (np. do przewijania stron w HorizontalPager).
+ * Image with pinch zoom and double tap zoom. At scale 1 it passes
+ * one finger drags on (e.g. to page through a HorizontalPager).
  */
 @Composable
 fun ZoomableImage(bitmap: ImageBitmap, modifier: Modifier = Modifier, contentDescription: String? = null) {

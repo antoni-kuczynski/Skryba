@@ -17,8 +17,8 @@ import kotlin.math.min
 import kotlin.math.roundToInt
 
 /**
- * Wykrywa krawędzie kartki na zdjęciu. Zwraca 8 liczb (TL, TR, BR, BL) znormalizowanych do 0..1
- * albo null, gdy nie znaleziono sensownego czworokąta.
+ * Detects the edges of a sheet in a photo. Returns 8 numbers (TL, TR, BR, BL) normalized to 0..1,
+ * or null when no sensible quadrilateral was found.
  */
 object DocumentDetector {
 
@@ -53,14 +53,14 @@ object DocumentDetector {
         Imgproc.cvtColor(rgba, gray, Imgproc.COLOR_RGBA2GRAY)
         Imgproc.GaussianBlur(gray, gray, Size(5.0, 5.0), 0.0)
 
-        // 1) Krawędzie Canny z progami liczonymi z mediany jasności.
+        // 1) Canny edges with thresholds computed from the median brightness.
         val median = median(gray)
         val edges = Mat()
         Imgproc.Canny(gray, edges, max(0.0, 0.66 * median), min(255.0, 1.33 * median))
         Imgproc.dilate(edges, edges, Imgproc.getStructuringElement(Imgproc.MORPH_RECT, Size(3.0, 3.0)))
         var quad = findQuad(edges, area)
 
-        // 2) Gdy brak wyniku: progowanie Otsu (jasna kartka na ciemnym tle).
+        // 2) If there is no result: Otsu thresholding (light sheet on a dark background).
         if (quad == null) {
             val bin = Mat()
             Imgproc.threshold(gray, bin, 0.0, 255.0, Imgproc.THRESH_BINARY + Imgproc.THRESH_OTSU)
@@ -72,7 +72,7 @@ object DocumentDetector {
             bin.release()
         }
 
-        // 3) Gdy dalej brak: gradient koloru (kartka na podobnie jasnym, ale kolorowym tle).
+        // 3) If there is still none: color gradient (sheet on a similarly bright but colored background).
         if (quad == null) {
             val hsv = Mat()
             Imgproc.cvtColor(rgba, hsv, Imgproc.COLOR_RGBA2RGB)
@@ -108,7 +108,7 @@ object DocumentDetector {
             val c2f = MatOfPoint2f(*c.toArray())
             val peri = Imgproc.arcLength(c2f, true)
             var candidate: Array<Point>? = null
-            // Najpierw zwykłe uproszczenie konturu, potem otoczka wypukła z rosnącą tolerancją.
+            // First a plain contour simplification, then a convex hull with growing tolerance.
             val approx = MatOfPoint2f()
             Imgproc.approxPolyDP(c2f, approx, 0.02 * peri, true)
             if (approx.total() == 4L) candidate = approx.toArray()
@@ -139,7 +139,7 @@ object DocumentDetector {
         return best
     }
 
-    /** Odrzuca "czworokąt" będący po prostu ramką całego zdjęcia. */
+    /** Rejects a "quadrilateral" that is just the frame of the whole photo. */
     private fun touchesAllBorders(p: Array<Point>, m: Mat): Boolean {
         val w = m.cols() - 1.0
         val h = m.rows() - 1.0
@@ -161,7 +161,7 @@ object DocumentDetector {
         return 127.0
     }
 
-    /** Porządkuje punkty: lewy górny, prawy górny, prawy dolny, lewy dolny. */
+    /** Orders the points: top left, top right, bottom right, bottom left. */
     fun order(p: Array<Point>): Array<Point> {
         val tl = p.minBy { it.x + it.y }
         val br = p.maxBy { it.x + it.y }
@@ -170,12 +170,12 @@ object DocumentDetector {
         return arrayOf(tl, tr, br, bl)
     }
 
-    /** Domyślny czworokąt z małym marginesem, gdy wykrywanie zawiedzie. */
+    /** Default quadrilateral with a small margin, used when detection fails. */
     fun fullQuad(): FloatArray = floatArrayOf(0f, 0f, 1f, 0f, 1f, 1f, 0f, 1f)
 
     fun isFull(q: FloatArray?): Boolean = q == null || q.contentEquals(fullQuad())
 
-    /** Wycina i prostuje czworokąt [quad] (znormalizowany) z obrazu. */
+    /** Cuts out and straightens the quadrilateral [quad] (normalized) from the image. */
     fun warp(src: Bitmap, quad: FloatArray?): Bitmap {
         if (quad == null || isFull(quad)) return src
         val w = src.width

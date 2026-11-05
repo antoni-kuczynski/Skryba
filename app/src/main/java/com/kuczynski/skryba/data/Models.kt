@@ -5,7 +5,7 @@ import com.kuczynski.skryba.i18n.str
 import org.json.JSONArray
 import org.json.JSONObject
 
-/** Tryb skanowania wybierany w aparacie. Określa domyślny filtr i dodatkową obróbkę. */
+/** Scan mode chosen in the camera. Determines the default filter and extra processing. */
 enum class ScanMode(private val labelRes: Int, private val hintRes: Int) {
     DOCUMENT(R.string.mode_document, R.string.mode_document_hint),
     BOOK(R.string.mode_book, R.string.mode_book_hint),
@@ -42,7 +42,7 @@ enum class FilterType(private val labelRes: Int) {
     val label: String get() = str(labelRes)
 }
 
-/** Element nakładany na stronę po filtrach, np. podpis. Współrzędne znormalizowane 0..1. */
+/** Element placed on a page after filters, e.g. a signature. Coordinates normalized to 0..1. */
 data class Overlay(
     val image: String,
     val x: Float,
@@ -63,11 +63,11 @@ data class Overlay(
 
 data class Page(
     val id: String,
-    /** Nazwa pliku oryginalnego zdjęcia w katalogu dokumentu. */
+    /** File name of the original photo in the document directory. */
     val original: String,
-    /** Nazwa pliku przetworzonej strony (to trafia do PDF). */
+    /** File name of the processed page (this goes into the PDF). */
     val processed: String,
-    /** 8 liczb (TL, TR, BR, BL) znormalizowanych do 0..1 albo null = cały obraz. */
+    /** 8 numbers (TL, TR, BR, BL) normalized to 0..1, or null = whole image. */
     val quad: FloatArray?,
     val filter: FilterType,
     val rotation: Int,

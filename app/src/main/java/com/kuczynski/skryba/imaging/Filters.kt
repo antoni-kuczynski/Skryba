@@ -19,7 +19,7 @@ import kotlin.math.min
 import kotlin.math.pow
 import kotlin.math.roundToInt
 
-/** Filtry poprawiające wygląd skanu. Wszystko na OpenCV, bez sieci. */
+/** Filters that improve the look of a scan. All OpenCV, no network. */
 object Filters {
 
     fun apply(src: Bitmap, filter: FilterType): Bitmap {
@@ -53,9 +53,9 @@ object Filters {
         return bmp
     }
 
-    // ---------- Pomocnicze ----------
+    // ---------- Helpers ----------
 
-    /** Szacuje tło (oświetlenie kartki): pomniejszenie, dylatacja usuwa tekst, mediana wygładza. */
+    /** Estimates the background (page lighting): downscale, dilation removes text, median smooths. */
     private fun background(plane: Mat): Mat {
         val f = 0.25
         val small = Mat()
@@ -68,7 +68,7 @@ object Filters {
         return bg
     }
 
-    /** Dzieli kanał przez tło: papier staje się biały, cienie znikają. */
+    /** Divides the channel by the background: paper becomes white, shadows disappear. */
     private fun flatten(plane: Mat): Mat {
         val bg = background(plane)
         val out = Mat()
@@ -114,9 +114,9 @@ object Filters {
         blur.release()
     }
 
-    // ---------- Filtry ----------
+    // ---------- Filters ----------
 
-    /** Automatyczne poziomy, CLAHE na jasności i lekkie wyostrzenie. Dobre do zdjęć i dowodów. */
+    /** Automatic levels, CLAHE on lightness and light sharpening. Good for photos and ID cards. */
     private fun auto(rgb: Mat): Mat {
         val out = rgb.clone()
         val ch = ArrayList<Mat>()
@@ -141,7 +141,7 @@ object Filters {
         return out
     }
 
-    /** "Magiczny kolor": usuwa cienie i tło, zachowuje kolory pieczątek i podkreśleń. */
+    /** "Magic color": removes shadows and background, keeps the colors of stamps and underlines. */
     private fun magic(rgb: Mat, saturation: Double, strong: Boolean = false): Mat {
         val ch = ArrayList<Mat>()
         Core.split(rgb, ch)
@@ -174,7 +174,7 @@ object Filters {
         val out = Mat()
         Imgproc.adaptiveThreshold(flat, out, 255.0, Imgproc.ADAPTIVE_THRESH_GAUSSIAN_C, Imgproc.THRESH_BINARY, block, 12.0)
         flat.release()
-        // Usunięcie pojedynczych kropek szumu.
+        // Remove isolated noise dots.
         Imgproc.medianBlur(out, out, 3)
         return out
     }
@@ -186,8 +186,8 @@ object Filters {
     }
 
     /**
-     * Tryb "Sprawdzian": usuwa odpowiedzi napisane niebieskim lub czerwonym długopisem,
-     * zostawia czarny druk. Wynik w odcieniach szarości.
+     * "Test paper" mode: removes answers written with a blue or red pen,
+     * keeps black print. The result is grayscale.
      */
     private fun noInk(rgb: Mat): Mat {
         val colored = magic(rgb, saturation = 1.0)
@@ -236,9 +236,9 @@ object Filters {
         return lo to hi
     }
 
-    // ---------- Tryby specjalne ----------
+    // ---------- Special modes ----------
 
-    /** Dzieli rozkładówkę książki na dwie strony w miejscu grzbietu (najciemniejsza kolumna w środku). */
+    /** Splits a book spread into two pages at the spine (the darkest column in the middle). */
     fun splitBook(src: Bitmap): Pair<Bitmap, Bitmap> {
         val rgba = Mat()
         Utils.bitmapToMat(src, rgba)
@@ -270,8 +270,8 @@ object Filters {
     }
 
     /**
-     * Składa przód i tył dowodu na jednej stronie A4 (300 dpi) w rzeczywistym rozmiarze karty,
-     * jak ksero dowodu.
+     * Places the front and back of an ID card on one A4 page (300 dpi) at the real card size,
+     * like a photocopy of the ID.
      */
     fun composeIdCard(front: Bitmap, back: Bitmap?): Bitmap {
         val pageW = 2480
@@ -283,7 +283,7 @@ object Filters {
         c.drawColor(Color.WHITE)
         val paint = Paint(Paint.FILTER_BITMAP_FLAG or Paint.ANTI_ALIAS_FLAG)
         fun place(b: Bitmap, top: Float) {
-            // Karta jest pozioma; gdy zdjęcie pionowe, obracamy.
+            // The card is landscape; rotate when the photo is portrait.
             val bmp = if (b.height > b.width) ImageIO.rotate(b, 90) else b
             val s = min(cardW / bmp.width, cardH / bmp.height)
             val w = bmp.width * s

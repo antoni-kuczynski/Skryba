@@ -109,7 +109,7 @@ fun AiToolScreen(nav: NavController, tool: Tool) {
     }
 }
 
-// ---------------- Wybór zdjęcia: galeria, plik albo aparat ----------------
+// ---------------- Choosing a photo: gallery, file or camera ----------------
 
 @Composable
 private fun ImageSourceButtons(runner: TaskRunner, preferFiles: Boolean = false, onPicked: (File) -> Unit) {
@@ -158,7 +158,7 @@ private fun InfoCard(text: String) {
     }
 }
 
-// ---------------- Renowacja zdjęć ----------------
+// ---------------- Photo restoration ----------------
 
 @Composable
 private fun RestoreScreen(nav: NavController) {
@@ -227,7 +227,7 @@ private fun RestoreScreen(nav: NavController) {
     result?.let { files -> ResultSheet(files, onOpen = { nav.viewFile(it) }, onQr = { nav.shareFilesQr(it) }, onDismiss = { result = null }) }
 }
 
-// ---------------- Wykrywanie manipulacji / Photoshopa ----------------
+// ---------------- Tamper / Photoshop detection ----------------
 
 @Composable
 private fun TamperScreen(nav: NavController, tool: Tool) {
@@ -294,7 +294,7 @@ private fun TamperScreen(nav: NavController, tool: Tool) {
     BusyDialog(runner)
 }
 
-// ---------------- Licznik obiektów ----------------
+// ---------------- Object counter ----------------
 
 @Composable
 private fun CountScreen(nav: NavController) {
@@ -310,7 +310,7 @@ private fun CountScreen(nav: NavController) {
     LaunchedEffect(source, sensitivity, polarity, version) {
         val src = source ?: return@LaunchedEffect
         delay(250)
-        // Poprzednie liczenie musi się skończyć, inaczej ostatnia zmiana suwaka zostałaby pominięta.
+        // The previous count must finish, otherwise the last slider change would be skipped.
         while (runner.busy) delay(100)
         runner.run(str(R.string.counting), onDone = { r: AiTools.CountResult -> points.clear(); points.addAll(r.centers); radius = r.radius }) {
             AiTools.countObjects(src, sensitivity, when (polarity) { 1 -> true; 2 -> false; else -> null })
@@ -377,7 +377,7 @@ private fun CountScreen(nav: NavController) {
     result?.let { files -> ResultSheet(files, onOpen = { nav.viewFile(it) }, onQr = { nav.shareFilesQr(it) }, onDismiss = { result = null }) }
 }
 
-// ---------------- Mega skan ----------------
+// ---------------- Mega scan ----------------
 
 @Composable
 private fun MegaScanScreen(nav: NavController) {

@@ -97,7 +97,7 @@ fun SettingsScreen(nav: NavController) {
                     FilterChip(language == tag, {
                         language = tag
                         Lang.set(context, tag)
-                        // Na Androidzie 13+ system sam odświeża aktywność po zmianie języka aplikacji.
+                        // On Android 13+ the system refreshes the activity itself after the app language changes.
                         if (Build.VERSION.SDK_INT < 33) (context as? Activity)?.recreate()
                     }, label = { Text(label) })
                 }

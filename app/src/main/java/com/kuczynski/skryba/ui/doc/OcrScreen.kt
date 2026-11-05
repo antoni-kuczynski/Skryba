@@ -161,7 +161,7 @@ fun OcrScreen(nav: NavController, docId: String, pageIndex: Int) {
     }
 }
 
-/** Wybór języków OCR (zapisywany w ustawieniach). */
+/** OCR language selection (saved in settings). */
 @Composable
 fun LanguageDialog(onDismiss: () -> Unit, onApply: () -> Unit) {
     val context = LocalContext.current

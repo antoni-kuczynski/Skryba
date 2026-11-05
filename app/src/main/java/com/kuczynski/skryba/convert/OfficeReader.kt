@@ -10,7 +10,7 @@ import java.util.TimeZone
 import java.util.zip.ZipFile
 import javax.xml.parsers.DocumentBuilderFactory
 
-// ---------- Model niezależny od formatu (rysowany potem do PDF) ----------
+// ---------- Format-independent model (later drawn to PDF) ----------
 
 data class RunStyle(
     val bold: Boolean = false,
@@ -68,20 +68,20 @@ data class SlideData(val shapes: List<SlideShape>, val background: Int?)
 
 data class Presentation(val widthPt: Float, val heightPt: Float, val slides: List<SlideData>)
 
-/** Błąd formatu bez tekstu dla użytkownika (ten moduł nie zależy od Androida; komunikat tworzy UI). */
+/** Format error without user-facing text (this module does not depend on Android; the UI builds the message). */
 class UnsupportedFormatException(val reason: Reason, val ext: String = "") : Exception("${reason.name} $ext") {
     enum class Reason { NOT_OOXML, EMPTY, OLD_FORMAT, UNKNOWN_TYPE }
 }
 
 /**
- * Odczyt plików Office Open XML do prostego modelu. Używa tylko DOM z JDK/Androida.
- * Stare binarne formaty (.doc, .xls, .ppt) nie są obsługiwane.
+ * Reads Office Open XML files into a simple model. Uses only the DOM from the JDK/Android.
+ * Old binary formats (.doc, .xls, .ppt) are not supported.
  */
 object OfficeReader {
 
     private const val EMU_PER_PT = 12700f
 
-    // ---------- Wspólne narzędzia XML/ZIP ----------
+    // ---------- Shared XML/ZIP utilities ----------
 
     private class Package(file: File) : AutoCloseable {
         val zip = try {
@@ -105,7 +105,7 @@ object OfficeReader {
             }
         }
 
-        /** Relacje części: id -> pełna ścieżka w paczce. */
+        /** Part relationships: id -> full path in the package. */
         fun rels(partPath: String): Map<String, String> {
             val dir = partPath.substringBeforeLast('/', "")
             val name = partPath.substringAfterLast('/')
@@ -171,7 +171,7 @@ object OfficeReader {
         return out
     }
 
-    /** Atrybut po nazwie lokalnej, bez względu na prefiks przestrzeni nazw. */
+    /** Attribute by local name, regardless of the namespace prefix. */
     private fun Element.attr(local: String): String? {
         val a = attributes
         for (i in 0 until a.length) {
@@ -183,7 +183,7 @@ object OfficeReader {
 
     private const val NS_R = "http://schemas.openxmlformats.org/officeDocument/2006/relationships"
 
-    /** Atrybut z przestrzeni nazw relacji (r:id, r:embed) - odróżnia go od zwykłego "id". */
+    /** Attribute from the relationships namespace (r:id, r:embed) - distinguishes it from a plain "id". */
     private fun Element.rel(local: String): String? = getAttributeNS(NS_R, local).takeIf { it.isNotEmpty() }
 
     private fun parseColor(hex: String?): Int? {
@@ -425,7 +425,7 @@ object OfficeReader {
     private fun formatNumber(v: String, isDate: Boolean): String {
         val d = v.toDoubleOrNull() ?: return v
         if (isDate && d > 0 && d < 2958466) {
-            // Excel liczy dni od 1899-12-30.
+            // Excel counts days from 1899-12-30.
             val millis = ((d - 25569.0) * 86400000.0).toLong()
             val fmt = if (d % 1.0 == 0.0) "yyyy-MM-dd" else "yyyy-MM-dd HH:mm"
             return SimpleDateFormat(fmt, Locale.US).apply { timeZone = TimeZone.getTimeZone("UTC") }.format(Date(millis))
@@ -557,7 +557,7 @@ object OfficeReader {
                         }
                     }
                     "graphicFrame" -> {
-                        // Tabele w prezentacji: tekst komórek wiersz po wierszu.
+                        // Tables in a presentation: cell text row by row.
                         val xf = k.kid("xfrm")?.let { x ->
                             val off = x.kid("off")
                             val ext = x.kid("ext")

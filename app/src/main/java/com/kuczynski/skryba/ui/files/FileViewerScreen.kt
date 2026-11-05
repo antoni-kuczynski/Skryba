@@ -214,7 +214,7 @@ private fun PdfPages(file: File, password: String?) {
     }
 }
 
-/** Podgląd Word/Excel/PowerPoint: renderowanie do tymczasowego PDF. */
+/** Word/Excel/PowerPoint preview: rendering to a temporary PDF. */
 @Composable
 private fun OfficePreview(file: File) {
     val state by produceState<Result<File>?>(null, file) {

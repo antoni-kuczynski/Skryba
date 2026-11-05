@@ -245,7 +245,7 @@ fun CameraScreen(nav: NavController) {
         if (hasPermission) {
             Box(Modifier.fillMaxSize().padding(top = 64.dp, bottom = 200.dp)) {
                 AndroidView({ previewView }, Modifier.fillMaxSize())
-                // Obrys wykrytej kartki na podglądzie (podgląd i analiza mają proporcje 4:3).
+                // Outline of the detected sheet on the preview (preview and analysis have a 4:3 aspect ratio).
                 val q = liveQuad
                 Canvas(Modifier.fillMaxSize()) {
                     val ar = 3f / 4f
@@ -290,7 +290,7 @@ fun CameraScreen(nav: NavController) {
             }
         }
 
-        // Górny pasek
+        // Top bar
         Row(
             Modifier.fillMaxWidth().statusBarsPadding().padding(horizontal = 8.dp, vertical = 4.dp),
             verticalAlignment = Alignment.CenterVertically,
@@ -316,7 +316,7 @@ fun CameraScreen(nav: NavController) {
             }
         }
 
-        // Dolny panel: tryby, migawka, galeria, gotowe
+        // Bottom panel: modes, shutter, gallery, done
         Column(
             Modifier.align(Alignment.BottomCenter).fillMaxWidth().background(Color.Black).navigationBarsPadding().padding(bottom = 12.dp),
             horizontalAlignment = Alignment.CenterHorizontally,

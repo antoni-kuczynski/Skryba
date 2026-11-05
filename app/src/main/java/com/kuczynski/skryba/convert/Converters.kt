@@ -20,7 +20,7 @@ import java.util.zip.ZipOutputStream
 
 typealias Progress = (done: Int, total: Int) -> Unit
 
-/** Konwersje między formatami. Wszystkie wyniki trafiają do zakładki "Pliki". */
+/** Conversions between formats. All results go to the "Files" tab. */
 object Converters {
 
     fun baseName(f: File) = f.name.substringBeforeLast('.')
@@ -29,8 +29,8 @@ object Converters {
         ByteArrayOutputStream().also { bmp.compress(Bitmap.CompressFormat.JPEG, q, it) }.toByteArray()
 
     /**
-     * Słowa z pozycjami dla każdej strony PDF. Strony bez warstwy tekstu (skany)
-     * są rozpoznawane przez OCR.
+     * Words with positions for each PDF page. Pages without a text layer (scans)
+     * are recognized with OCR.
      */
     fun pageWords(context: Context, pdf: File, password: String?, progress: Progress): List<PageWords> {
         val fromPdf = runCatching { PdfTools.extractWords(pdf, password) }.getOrDefault(emptyList())
@@ -43,7 +43,7 @@ object Converters {
             } else {
                 val bmp = PdfRender.render(pdf, i, dpi = 220, password = password)
                 val words = OcrEngine.recognizeWords(context, bmp)
-                // Piksele przy 220 dpi -> punkty.
+                // Pixels at 220 dpi -> points.
                 val s = 72f / 220f
                 val pw = PageWords(bmp.width * s, bmp.height * s, words.map {
                     WordBox(it.text, it.box.left * s, it.box.top * s, it.box.width() * s, it.box.height() * s)
@@ -92,7 +92,7 @@ object Converters {
         return Library.addFile(tmp, baseName(pdf) + ".pptx", move = true)
     }
 
-    /** PDF -> JPG: jedna strona daje plik .jpg, więcej stron - archiwum .zip z obrazami. */
+    /** PDF -> JPG: one page gives a .jpg file, more pages give a .zip archive of images. */
     fun pdfToJpg(pdf: File, password: String?, dpi: Int, progress: Progress): File {
         val n = PdfRender.pageCount(pdf, password)
         val base = baseName(pdf)
@@ -128,7 +128,7 @@ object Converters {
 
     fun isOffice(f: File) = f.extension.lowercase() in setOf("docx", "docm", "dotx", "xlsx", "xlsm", "xltx", "pptx", "ppsx", "potx", "txt", "csv", "md")
 
-    /** Word / Excel / PowerPoint / tekst -> PDF. */
+    /** Word / Excel / PowerPoint / text -> PDF. */
     fun officeToPdf(file: File, progress: Progress): File {
         progress(0, 2)
         val tmp = Library.tempFile("office.pdf")
@@ -172,7 +172,7 @@ object Converters {
         return rows
     }
 
-    /** Tekst rozpoznany ze zdjęć -> dokument Word. */
+    /** Text recognized from photos -> Word document. */
     fun textToWord(text: String, name: String): File {
         val blocks = ArrayList<DocxBlock>()
         text.split("\u000C").forEachIndexed { i, pageText ->

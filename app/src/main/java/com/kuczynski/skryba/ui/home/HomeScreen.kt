@@ -218,7 +218,7 @@ fun HomeScreen(nav: NavController) {
     BusyDialog(runner)
 }
 
-// ---------------- Dokumenty ----------------
+// ---------------- Documents ----------------
 
 @Composable
 private fun DocumentsTab(nav: NavController, query: String, onImport: () -> Unit) {
@@ -356,7 +356,7 @@ private fun DocRow(
     }
 }
 
-// ---------------- Narzędzia ----------------
+// ---------------- Tools ----------------
 
 @Composable
 private fun ToolsTab(nav: NavController) {
@@ -401,7 +401,7 @@ private fun ToolCard(t: Tool, onClick: () -> Unit) {
     }
 }
 
-// ---------------- Pliki ----------------
+// ---------------- Files ----------------
 
 @Composable
 private fun FilesTab(nav: NavController, query: String, onImport: () -> Unit) {

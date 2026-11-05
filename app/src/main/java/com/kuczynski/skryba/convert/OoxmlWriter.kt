@@ -5,7 +5,7 @@ import java.io.OutputStream
 import java.util.zip.ZipEntry
 import java.util.zip.ZipOutputStream
 
-/** Blok treści dokumentu Word. */
+/** Word document content block. */
 sealed class DocxBlock {
     data class Paragraph(
         val text: String,
@@ -25,8 +25,8 @@ data class Sheet(val name: String, val rows: List<List<String>>)
 data class Slide(val jpeg: ByteArray, val widthPx: Int, val heightPx: Int, val notes: String = "")
 
 /**
- * Minimalny, poprawny zapis plików Office Open XML (docx, xlsx, pptx) bez zewnętrznych bibliotek.
- * Pliki otwierają się w Wordzie, Excelu, PowerPoincie, LibreOffice i Google Docs.
+ * Minimal, valid writer for Office Open XML files (docx, xlsx, pptx) without external libraries.
+ * The files open in Word, Excel, PowerPoint, LibreOffice and Google Docs.
  */
 object OoxmlWriter {
 
@@ -45,7 +45,7 @@ object OoxmlWriter {
                 ch == '<' -> sb.append("&lt;")
                 ch == '>' -> sb.append("&gt;")
                 ch == '"' -> sb.append("&quot;")
-                // Znaki sterujące są niedozwolone w XML 1.0.
+                // Control characters are not allowed in XML 1.0.
                 ch < ' ' && ch != '\t' && ch != '\n' && ch != '\r' -> {}
                 ch == '￾' || ch == '￿' -> {}
                 else -> sb.append(ch)
@@ -111,7 +111,7 @@ object OoxmlWriter {
                 "xmlns:pic=\"http://schemas.openxmlformats.org/drawingml/2006/picture\"><w:body>",
         )
         var imgIndex = 0
-        // Szerokość obszaru tekstu A4 z marginesami 2 cm = 17 cm.
+        // Width of the A4 text area with 2 cm margins = 17 cm.
         val maxWidthEmu = 6120000L
         val maxHeightEmu = 8900000L
         for (b in blocks) {
@@ -319,10 +319,10 @@ object OoxmlWriter {
 
     fun writePptx(file: File, slides: List<Slide>) = file.outputStream().use { writePptx(it, slides) }
 
-    /** Każdy slajd zawiera jeden obraz na całej powierzchni (wierne odwzorowanie wyglądu strony). */
+    /** Each slide contains one full-size image (faithful reproduction of the page look). */
     fun writePptx(out: OutputStream, slides: List<Slide>) {
         require(slides.isNotEmpty())
-        // Rozmiar slajdu z proporcji pierwszej strony; szerokość 10 cali.
+        // Slide size from the aspect ratio of the first page; width 10 inches.
         val first = slides.first()
         val cx = 9144000L
         val cy = (cx * first.heightPx / first.widthPx.coerceAtLeast(1)).coerceIn(914400L, 51206400L)
@@ -396,7 +396,7 @@ object OoxmlWriter {
             slides.forEachIndexed { i, s ->
                 val n = i + 1
                 zip.bytes("ppt/media/image$n.jpeg", s.jpeg)
-                // Obraz wpasowany w slajd z zachowaniem proporcji.
+                // Image fitted into the slide, keeping its aspect ratio.
                 val scale = minOf(cx.toDouble() / s.widthPx, cy.toDouble() / s.heightPx)
                 val w = (s.widthPx * scale).toLong()
                 val h = (s.heightPx * scale).toLong()

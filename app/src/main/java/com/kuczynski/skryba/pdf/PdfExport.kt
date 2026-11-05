@@ -22,12 +22,12 @@ import kotlin.math.min
 data class PdfOptions(
     val pageSize: PageSize = PageSize.A4,
     val quality: Int = 85,
-    /** Niewidoczna warstwa tekstu z OCR - PDF da się przeszukiwać i kopiować z niego tekst. */
+    /** Invisible OCR text layer - the PDF can be searched and its text copied. */
     val searchable: Boolean = false,
     val password: String? = null,
 )
 
-/** Tworzenie PDF z obrazów stron. */
+/** Creating PDFs from page images. */
 object PdfExport {
 
     fun imagesToPdf(
@@ -59,7 +59,7 @@ object PdfExport {
         val landscape = bmp.width > bmp.height
         val (pw, ph) = when (o.pageSize) {
             PageSize.FIT -> {
-                // Dłuższy bok jak w A4, proporcje z obrazu.
+                // Longer side like A4, aspect ratio from the image.
                 val s = 841.89f / max(bmp.width, bmp.height)
                 bmp.width * s to bmp.height * s
             }

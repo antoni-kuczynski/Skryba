@@ -79,7 +79,7 @@ fun QrShareScreen(nav: NavController) {
             t?.let { ShareServer.unshare(it) }
         }
     }
-    // Adres może się zmienić po podłączeniu do Wi-Fi lub włączeniu hotspotu.
+    // The address may change after connecting to Wi-Fi or turning on a hotspot.
     LaunchedEffect(token) {
         val t = token ?: return@LaunchedEffect
         while (true) {

@@ -32,14 +32,14 @@ import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.sin
 
-/** Słowo z położeniem na stronie (w punktach, początek w lewym górnym rogu). */
+/** Word with a position on the page (in points, origin at the top left corner). */
 data class WordBox(val text: String, val x: Float, val y: Float, val w: Float, val h: Float)
 
 data class PageWords(val width: Float, val height: Float, val words: List<WordBox>)
 
 class PdfPasswordException : Exception(str(R.string.err_pdf_password))
 
-/** Operacje na plikach PDF (PdfBox, offline). */
+/** Operations on PDF files (PdfBox, offline). */
 object PdfTools {
 
     private const val FONT_ASSET = "com/tom_roush/pdfbox/resources/ttf/LiberationSans-Regular.ttf"
@@ -54,7 +54,7 @@ object PdfTools {
         throw PdfPasswordException()
     }
 
-    /** Czy otwarcie pliku wymaga hasła. */
+    /** Whether opening the file requires a password. */
     fun needsPassword(file: File): Boolean = try {
         PDDocument.load(file).close()
         false
@@ -64,14 +64,14 @@ object PdfTools {
 
     fun pageCount(file: File, password: String? = null): Int = open(file, password).use { it.numberOfPages }
 
-    /** Zapis z usunięciem ewentualnego szyfrowania (otwarte hasłem pliki zapisujemy bez hasła). */
+    /** Saves with any encryption removed (files opened with a password are saved without one). */
     private fun PDDocument.saveClean(out: File) {
         if (isEncrypted) isAllSecurityToBeRemoved = true
         save(out)
     }
 
     fun merge(inputs: List<File>, out: File, passwords: Map<File, String> = emptyMap()) {
-        // Zaszyfrowane pliki najpierw odszyfrowujemy do plików tymczasowych.
+        // Encrypted files are first decrypted to temporary files.
         val prepared = inputs.map { f ->
             val pw = passwords[f]
             if (pw != null) {
@@ -87,7 +87,7 @@ object PdfTools {
         prepared.filter { it !in inputs }.forEach { it.delete() }
     }
 
-    /** Dzieli PDF na części. [ranges] to zakresy indeksów stron liczonych od 0. */
+    /** Splits a PDF into parts. [ranges] are page index ranges counted from 0. */
     fun split(input: File, ranges: List<IntRange>, outFiles: List<File>, password: String? = null) {
         open(input, password).use { src ->
             ranges.forEachIndexed { i, r ->
@@ -100,8 +100,8 @@ object PdfTools {
     }
 
     /**
-     * Uniwersalna reorganizacja: kolejność stron [order] (indeksy z oryginału, brakujące = usunięte)
-     * oraz dodatkowy obrót dla każdej pozycji [rotations] (stopnie, wielokrotność 90).
+     * General reorganization: page order [order] (indexes from the original, missing = removed)
+     * and an extra rotation for each position [rotations] (degrees, multiple of 90).
      */
     fun organize(input: File, order: List<Int>, rotations: List<Int>, out: File, password: String? = null) {
         open(input, password).use { src ->
@@ -141,7 +141,7 @@ object PdfTools {
                 val cy = box.lowerLeftY + h / 2
                 val c = cos(angle).toFloat()
                 val s = sin(angle).toFloat()
-                // Środek napisu w środku strony: przesuwamy o połowę szerokości wzdłuż obróconej osi.
+                // Text center in the page center: shift by half the width along the rotated axis.
                 val ox = -tw / 2f
                 val oy = -fontSize / 3f
                 val tx = cx + ox * c - oy * s
@@ -183,8 +183,8 @@ object PdfTools {
     }
 
     /**
-     * Kompresja: ponownie koduje obrazy w PDF jako JPEG o zadanej jakości i ograniczonej rozdzielczości.
-     * Tekst i grafika wektorowa zostają bez zmian.
+     * Compression: re-encodes images in the PDF as JPEG with the given quality and limited resolution.
+     * Text and vector graphics stay unchanged.
      */
     fun compress(input: File, quality: Float, maxDim: Int, out: File, password: String? = null) {
         open(input, password).use { doc ->
@@ -216,7 +216,7 @@ object PdfTools {
                 is PDImageXObject -> {
                     val key = COSKey(xo.cosObject)
                     val replacement = done[key] ?: run {
-                        // Pomijamy maski i małe obrazki - nie warto, a łatwo coś zepsuć.
+                        // Skip masks and small images - not worth it, and easy to break something.
                         if (xo.isStencil || xo.width * xo.height < 200 * 200) return@run null
                         val bmp = runCatching { xo.image }.getOrNull() ?: return@run null
                         val scaled = ImageIO.limit(bmp, maxDim)
@@ -238,8 +238,8 @@ object PdfTools {
     }
 
     /**
-     * Nakłada obraz (np. podpis) na stronę. Prostokąt [nx],[ny],[nw],[nh] znormalizowany względem
-     * strony tak, jak jest wyświetlana (z uwzględnieniem obrotu), początek w lewym górnym rogu.
+     * Overlays an image (e.g. a signature) on a page. The rectangle [nx],[ny],[nw],[nh] is normalized to
+     * the page as displayed (including rotation), origin at the top left corner.
      */
     fun stampImage(
         input: File,
@@ -282,13 +282,13 @@ object PdfTools {
         }
     }
 
-    /** Słowa z pozycjami dla każdej strony (do odtwarzania tabel w Excelu). */
+    /** Words with positions for each page (to rebuild tables in Excel). */
     fun extractWords(input: File, password: String? = null): List<PageWords> = open(input, password).use { doc ->
         (1..doc.numberOfPages).map { p ->
             val words = ArrayList<WordBox>()
             val stripper = object : PDFTextStripper() {
                 override fun writeString(text: String, textPositions: MutableList<TextPosition>) {
-                    // PdfBox wywołuje to dla fragmentów linii; dzielimy dalej po spacjach.
+                    // PdfBox calls this for line fragments; we split further on spaces.
                     var cur = StringBuilder()
                     var first: TextPosition? = null
                     var last: TextPosition? = null
@@ -332,7 +332,7 @@ object PdfTools {
         }
     }
 
-    /** Zostawia tylko znaki, które da się zapisać danym fontem (np. bez emoji). */
+    /** Keeps only characters that can be written with the given font (e.g. no emoji). */
     fun encodable(font: PDFont, text: String): String {
         if (runCatching { font.encode(text) }.isSuccess) return text
         val sb = StringBuilder()

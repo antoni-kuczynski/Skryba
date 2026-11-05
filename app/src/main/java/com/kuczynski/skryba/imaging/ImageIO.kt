@@ -15,7 +15,7 @@ import kotlin.math.roundToInt
 
 object ImageIO {
 
-    /** Dekoduje obraz z uwzględnieniem orientacji EXIF i ograniczeniem dłuższego boku do [maxSide]. */
+    /** Decodes an image respecting EXIF orientation and limiting the longer side to [maxSide]. */
     fun decode(file: File, maxSide: Int): Bitmap {
         val exif = runCatching { ExifInterface(file) }.getOrNull()
         return decodeInternal({ file.inputStream() }, exif, maxSide)
@@ -99,7 +99,7 @@ object ImageIO {
         file.outputStream().buffered().use { bmp.compress(Bitmap.CompressFormat.PNG, 100, it) }
     }
 
-    /** Wymiary obrazu po uwzględnieniu EXIF, bez dekodowania pikseli. */
+    /** Image dimensions respecting EXIF, without decoding pixels. */
     fun size(file: File): Pair<Int, Int> {
         val o = BitmapFactory.Options().apply { inJustDecodeBounds = true }
         BitmapFactory.decodeFile(file.path, o)

@@ -79,7 +79,7 @@ fun ReviewScreen(nav: NavController) {
 
     var saving by remember { mutableStateOf(false) }
     LaunchedEffect(pages.size) {
-        // Po zapisie sesja jest pusta, ale wtedy nawigacją zajmuje się save().
+        // After saving the session is empty, but then save() handles navigation.
         if (pages.isEmpty() && !saving) nav.popBackStack(Routes.HOME, false)
     }
     BackHandler { confirmExit = true }
@@ -174,9 +174,9 @@ fun ReviewScreen(nav: NavController) {
 @Composable
 private fun PagePreview(p: SessionPage) {
     val key = ScanSession.previewKey(p)
-    // Stan produceState nie jest resetowany przy zmianie klucza, więc przy każdej zmianie
-    // (filtr, obrót, przycięcie) bierzemy podgląd z pamięci albo liczymy go od nowa.
-    // Do czasu przeliczenia zostaje poprzedni obraz z kółkiem postępu.
+    // produceState is not reset when the key changes, so on every change
+    // (filter, rotation, crop) we take the preview from memory or compute it again.
+    // Until it is recomputed the previous image stays, with a progress spinner.
     var busy by remember { mutableStateOf(false) }
     val bmp by produceState<Bitmap?>(ScanSession.previews[key], key) {
         val cached = synchronized(ScanSession.previews) { ScanSession.previews[key] }
@@ -190,7 +190,7 @@ private fun PagePreview(p: SessionPage) {
         }
         if (fresh != null) {
             synchronized(ScanSession.previews) {
-                // Prosty limit pamięci podglądów.
+                // Simple memory limit for previews.
                 if (ScanSession.previews.size > 16) ScanSession.previews.clear()
                 ScanSession.previews[key] = fresh
             }

@@ -23,9 +23,9 @@ import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.Executors
 
 /**
- * Mały serwer HTTP w sieci lokalnej. Odbiorca skanuje kod QR albo otwiera link
- * w przeglądarce i pobiera pliki bezpośrednio z telefonu - bez chmury i bez internetu.
- * Każde udostępnienie ma losowy token, a serwer działa tylko gdy coś jest udostępniane.
+ * Small HTTP server on the local network. The recipient scans a QR code or opens the link
+ * in a browser and downloads files directly from the phone - no cloud and no internet.
+ * Each share has a random token, and the server runs only while something is being shared.
  */
 object ShareServer {
 
@@ -33,7 +33,7 @@ object ShareServer {
         val title: String,
         val files: List<File> = emptyList(),
         val docIds: List<String> = emptyList(),
-        /** Cała biblioteka (dostęp z komputera), lista odświeżana przy każdym wejściu. */
+        /** Whole library (access from a computer), the list is refreshed on every visit. */
         val library: Boolean = false,
         val allowUpload: Boolean = false,
     )
@@ -45,7 +45,7 @@ object ShareServer {
     var port: Int = 0
         private set
 
-    /** Wywoływane po wgraniu pliku z przeglądarki. */
+    /** Called after a file is uploaded from the browser. */
     var onUpload: ((File) -> Unit)? = null
 
     @Synchronized
@@ -94,7 +94,7 @@ object ShareServer {
         pool.shutdownNow()
     }
 
-    /** Adres IPv4 w sieci lokalnej (Wi-Fi albo hotspot udostępniany przez telefon). */
+    /** IPv4 address on the local network (Wi-Fi or the hotspot shared by the phone). */
     fun localIp(): String? {
         val candidates = runCatching { NetworkInterface.getNetworkInterfaces().toList() }.getOrDefault(emptyList())
             .filter { runCatching { it.isUp && !it.isLoopback }.getOrDefault(false) }
@@ -104,7 +104,7 @@ object ShareServer {
         return (preferred ?: candidates.firstOrNull())?.second?.hostAddress
     }
 
-    // ---------------- Obsługa żądań ----------------
+    // ---------------- Request handling ----------------
 
     private fun handle(socket: Socket) {
         socket.use { s ->

@@ -18,7 +18,7 @@ import java.io.File
 import java.util.zip.ZipEntry
 import java.util.zip.ZipOutputStream
 
-/** Operacje na zeskanowanych dokumentach: eksport, OCR. */
+/** Operations on scanned documents: export, OCR. */
 object DocActions {
 
     fun pageFiles(doc: ScanDocument): List<File> = doc.pages.map { Library.pageFile(doc.id, it.processed) }
@@ -29,7 +29,7 @@ object DocActions {
         return Library.addFile(tmp, "$name.pdf", move = true)
     }
 
-    /** PDF w katalogu tymczasowym (do udostępnienia albo jako wejście narzędzi). */
+    /** PDF in the temp directory (to share or as tool input). */
     fun tempPdf(context: Context, doc: ScanDocument, progress: (Int, Int) -> Unit = { _, _ -> }): File {
         val f = File(Library.tempDir, Library.sanitize(doc.name) + ".pdf")
         val s = Settings.value
@@ -37,7 +37,7 @@ object DocActions {
         return f
     }
 
-    /** Kopie stron jako JPG o czytelnych nazwach (do udostępnienia). */
+    /** Copies of pages as JPG with readable names (to share). */
     fun tempJpgs(doc: ScanDocument, indices: List<Int>? = null): List<File> {
         val base = Library.sanitize(doc.name)
         val pages = indices?.map { doc.pages[it] } ?: doc.pages
@@ -49,7 +49,7 @@ object DocActions {
         }
     }
 
-    /** Zapisuje strony jako JPG w galerii, w albumie "Skryba" (Pictures/Skryba). Zwraca liczbę zapisanych zdjęć. */
+    /** Saves pages as JPG in the gallery, in the "Skryba" album (Pictures/Skryba). Returns the number of saved photos. */
     fun saveToGallery(context: Context, doc: ScanDocument, indices: List<Int>? = null): Int {
         val resolver = context.contentResolver
         val base = Library.sanitize(doc.name)
@@ -99,7 +99,7 @@ object DocActions {
         return Library.addFile(tmp, str(R.string.jpg_zip_suffix, doc.name), move = true)
     }
 
-    /** Tworzy dokument ze stron PDF (każda strona jako obraz), żeby móc go edytować jak skan. */
+    /** Creates a document from PDF pages (each page as an image) so it can be edited like a scan. */
     fun importPdf(pdf: File, password: String?, name: String, progress: (Int, Int) -> Unit): ScanDocument {
         val id = Library.newId()
         val n = PdfRender.pageCount(pdf, password)
@@ -118,7 +118,7 @@ object DocActions {
         return doc
     }
 
-    /** Rozpoznaje tekst na stronach i zapisuje go w dokumencie (pozwala też wyszukiwać po treści). */
+    /** Recognizes text on pages and stores it in the document (also enables searching by content). */
     fun ocr(
         context: Context,
         doc: ScanDocument,

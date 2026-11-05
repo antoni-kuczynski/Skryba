@@ -5,9 +5,9 @@
     <uses-feature android:name="android.hardware.camera" android:required="false" />
 
     <uses-permission android:name="android.permission.CAMERA" />
-    <!-- Zapis do galerii (album Skryba): na Androidzie 10+ niepotrzebne. -->
+    <!-- Saving to the gallery (Skryba album): not needed on Android 10+. -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="28" />
-    <!-- Tylko do udostępniania przez link/QR w sieci lokalnej (wbudowany serwer HTTP). -->
+    <!-- Only for sharing via link/QR on the local network (built-in HTTP server). -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -33,7 +33,7 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <!-- Otwieranie plików i obrazów udostępnionych z innych aplikacji -->
+            <!-- Opening files and images shared from other apps -->
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
                 <category android:name="android.intent.category.DEFAULT" />
