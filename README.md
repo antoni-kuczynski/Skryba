@@ -1,7 +1,8 @@
 # Skryba
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE.md)
-[![Build and unit tests](https://github.com/antoni-kuczynski/Skryba/actions/workflows/build.yml/badge.svg)](https://github.com/antoni-kuczynski/Skryba/actions/workflows/build.yml)
+[![Build](https://github.com/antoni-kuczynski/Skryba/actions/workflows/build.yml/badge.svg)](https://github.com/antoni-kuczynski/Skryba/actions/workflows/build.yml)
+[![Tests](https://github.com/antoni-kuczynski/Skryba/actions/workflows/instrumented-tests.yml/badge.svg)](https://github.com/antoni-kuczynski/Skryba/actions/workflows/instrumented-tests.yml)
 
 Skryba is a document scanner for Android. It works fully offline: no accounts, no ads,
 no cloud. The only network feature is optional sharing over your local Wi-Fi via a link or
@@ -68,6 +69,9 @@ Everything is processed on your device. Skryba does not collect data, does not r
 an account, and does not contain ads or trackers.
 
 ## Screenshots
-![skryba_scan.png](.github/images/skryba_scan.png)
-
-![skryba_edit_scan.png](.github/images/skryba_edit_scan.png)
+<table>
+  <tr>
+    <td><img src=".github/images/skryba_scan.png" alt="skryba scan image" width="400"/></td>
+    <td><img src=".github/images/skryba_edit_scan.png" alt="skryba edit scan image" width="400"/></td>
+  </tr>
+</table>
