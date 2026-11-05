@@ -50,6 +50,7 @@ import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableIntStateOf
@@ -417,8 +418,10 @@ fun importUris(context: Context, uris: List<Uri>, runner: com.kuczynski.skryba.u
 /** Wybór pliku z biblioteki aplikacji (zeskanowane dokumenty i pliki). */
 @Composable
 fun LibraryPicker(kind: InputKind, onDismiss: () -> Unit, onDoc: (ScanDocument) -> Unit, onFile: (File) -> Unit) {
-    val docs = if (kind == InputKind.PDF) Library.docs.value else emptyList()
-    val files = Library.files.value.filter { it.extension.lowercase() in kind.extensions }
+    val allDocs by Library.docs.collectAsState()
+    val allFiles by Library.files.collectAsState()
+    val docs = if (kind == InputKind.PDF) allDocs else emptyList()
+    val files = allFiles.filter { it.extension.lowercase() in kind.extensions }
     AlertDialog(
         onDismissRequest = onDismiss,
         title = { Text(str(R.string.choose_from_library)) },

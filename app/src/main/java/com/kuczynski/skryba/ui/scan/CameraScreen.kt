@@ -28,7 +28,6 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -244,7 +243,7 @@ fun CameraScreen(nav: NavController) {
 
     Box(Modifier.fillMaxSize().background(Color.Black)) {
         if (hasPermission) {
-            BoxWithConstraints(Modifier.fillMaxSize().padding(top = 64.dp, bottom = 200.dp)) {
+            Box(Modifier.fillMaxSize().padding(top = 64.dp, bottom = 200.dp)) {
                 AndroidView({ previewView }, Modifier.fillMaxSize())
                 // Obrys wykrytej kartki na podglądzie (podgląd i analiza mają proporcje 4:3).
                 val q = liveQuad

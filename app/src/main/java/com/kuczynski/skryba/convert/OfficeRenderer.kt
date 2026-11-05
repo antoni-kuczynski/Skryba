@@ -85,6 +85,8 @@ object OfficeRenderer {
         return sb
     }
 
+    // Layout.JUSTIFICATION_MODE_* ma te same wartosci co LineBreaker.* (API 29), a setJustificationMode jest od API 26.
+    @android.annotation.SuppressLint("WrongConstant")
     private fun layout(text: CharSequence, width: Int, justify: Boolean = false, baseSize: Float = 11f): StaticLayout {
         val paint = TextPaint(Paint.ANTI_ALIAS_FLAG).apply {
             textSize = baseSize
