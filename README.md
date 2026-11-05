@@ -1,4 +1,4 @@
-# <img src="docs/icon.svg" width="40" height="40" align="top"> Skryba
+# Skryba
 
 Skryba is a document scanner for Android. It works fully offline: no accounts, no ads,
 no cloud. The only network feature is optional sharing over your local Wi-Fi via a link or
